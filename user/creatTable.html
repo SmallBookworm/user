@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link href="css/ctable.css" rel="stylesheet">
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<!-- 
+			
+		<script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+								
+		<title></title>
+		<script type="text/javascript">
+			        (function (doc, win) {
+			            var docEl = doc.documentElement,
+			                resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+			                recalc = function () {
+			                    var clientHeight = docEl.clientHeight;
+			                    //alert("clientHeight==" + clientHeight);
+			                    var clientWidth = docEl.clientWidth;
+			                    //alert("clientWidth==" + clientWidth);
+			                    //if (!clientWidth) return;
+			                    if (clientWidth >= clientHeight) {
+			                         docEl.style.fontSize = 100 * (clientWidth / 3840) + 'px';
+			                    } else {
+			                        docEl.style.fontSize = 100 * (clientWidth / 3840) + 'px';
+			                    }
+			                   
+			                };
+			            if (!doc.addEventListener) return;
+			            win.addEventListener(resizeEvt, recalc, false);
+			            doc.addEventListener('DOMContentLoaded', recalc, false);
+			        })(document, window);
+			    </script> -->
+	</head>
+
+	<body>
+		<div class="container-fluid">
+			<div class="row">
+				<button type="button" class="col-md-2">生成报表</button>
+				<div id="ctable" class="list-group col-md-6 col-md-offset-1">
+					<button type="button" class="list-group-item">Cras justo odio</button>
+					<button type="button" class="list-group-item">Dapibus ac facilisis in</button>
+					<button type="button" class="list-group-item">Morbi leo risus</button>
+					<button type="button" class="list-group-item">Porta ac consectetur ac</button>
+					<button type="button" class="list-group-item">Vestibulum at eros</button>
+
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="js/ctable.js" />
+
+</html>
