@@ -1,0 +1,11 @@
+.form-horizontal label {
+	font-size: 1.5rem;
+	padding: 6px 0px 6px 0px;
+	text-align: center;
+}
+.ucol{
+	height: 100%;
+}
+.option:hover{
+	cursor: pointer;
+}

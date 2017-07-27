@@ -2,13 +2,15 @@ body {
 	padding:0;
 	margin: 0;
 }
+.page-header{
+	margin-top: 2rem;
+}
 h1{
 	text-align: center;
 	margin: 0 auto;
 }
 .form-signup {
 	padding: 15px;
-	margin:  50px 0 auto;
 }
 
 .form-signup .btn {
@@ -20,7 +22,6 @@ margin: 0 auto;
 	text-align: left;
 	
 }
-
 .ucol{
 	height: 100%;
 	padding: 0;
