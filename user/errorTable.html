@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/bootstrap-table.css">
+		<link rel="stylesheet" href="css/bootstrap-datepicker.min.css" />
+		<style>
+			.input-group.date {
+				width: 22rem;
+			}
+		</style>
+		<title>月,年度故障报表</title>
+	</head>
+
+	<body>
+		<div class="center container-fluid">
+			<div class="input-group date">
+				<input type="text" class="form-control">
+				<span class="input-group-addon">月</span>
+				<span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>				
+			</div>
+			<table id="table" data-toolbar="#toolbar" data-striped="true" data-search="true" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-show-export="true" data-detail-view="false" data-show-pagination-switch="true" data-pagination="true" data-show-footer="false" data-side-pagination="client" data-response-handler="responseHandler"></table>
+		</div>
+	</body>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script src="js/bootstrap-table.js"></script>
+	<script src="js/bootstrap-table-zh-CN.js"></script>
+	<script src="js/export/bootstrap-table-export.js"></script>
+	<script src="js/FileSaver.min.js"></script>
+	<script src="js/export/tableExport.js"></script>
+	<script src="js/datepicker/bootstrap-datepicker.min.js"></script>
+	<script src="js/datepicker/bootstrap-datepicker.zh-CN.js"></script>
+	<script src="js/errorTable.js"></script>
+
+</html>

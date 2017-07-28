@@ -120,31 +120,31 @@ var json = [{
 ];
 
 var zhCN = {
-		'username': '登录名',
-		'name': '姓名',
-		'club': '部门',
-		'state': '状态',
-		'operate': '操作',
-		sex:'性别',
-		cellphone:'手机',
-		telephone:'电话',
-		IDcard:'身份证号',
-		password:'密码',
-		kind:'类别',
-		state:'状态'
+	'username': '登录名',
+	'name': '姓名',
+	'club': '部门',
+	'state': '状态',
+	'operate': '操作',
+	sex: '性别',
+	cellphone: '手机',
+	telephone: '电话',
+	IDcard: '身份证号',
+	password: '密码',
+	kind: '类别',
+	state: '状态'
 };
-	function createModal(data) {
-		var form = $('#form-change')[0];
-		for(var i in data) {
-			form[i].value = data[i];
-		}
+
+function createModal(data) {
+	var form = $('#form-change')[0];
+	for(var i in data) {
+		form[i].value = data[i];
 	}
+}
 
 function detailFormatter(index, row) {
 	var html = [];
-
 	for(var key in row) {
-		html.push('<p><b>' + zhCN[key] + ':</b> ' + row[key] + '</p>');
+		html.push('<b>' + zhCN[key] + ':</b>' + row[key] + '&nbsp;&nbsp;&nbsp;');
 	}
 	return html.join('');
 }
@@ -175,6 +175,11 @@ $('#table').bootstrapTable({
 	idField: 'username',
 	pageSize: 5,
 	pageList: [10, 25, 50],
+	exportDataType: 'all',
+	exportOptions: {
+		fileName: '账户',
+		ignoreColumn: [0, "operate"]
+	},
 	detailFormatter: detailFormatter,
 	columns: [{
 		field: 'username',
@@ -189,13 +194,12 @@ $('#table').bootstrapTable({
 		title: '部门',
 		align: 'center',
 		sortable: true
-
 	}, {
 		field: 'state',
 		title: '状态',
 		align: 'center',
-		sortable: true
-
+		sortable: true,
+		visible: false
 	}, {
 		field: 'operate',
 		title: '操作',
