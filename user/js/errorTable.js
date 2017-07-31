@@ -4,23 +4,50 @@ var json = [{
 	errorname: 'deletuser'
 }];
 
-$('.input-group.date').datepicker({
+$('.datepicker').datepicker({
 	language: 'zh-CN',
-	 format: "yyyy/mm",
-    minViewMode: 1,
-	autoclose:true
-}).on('changeDate',function(event){
+	format: "yyyy年mm",
+	minViewMode: 1,
+	autoclose: true
+}).on('changeDate', function(event) {
 	console.log(event.date);
 });
+document.getElementById('datetype').addEventListener('click', function(event) {
+	if(this.innerText === '月') {
+		this.innerText = '年';
+		$('.datepicker').datepicker('update','');
+		$('.datepicker').datepicker('destroy');
+		$('.datepicker').datepicker( {
+			language: 'zh-CN',
+			format: "yyyy",
+			minViewMode: 2,
+			autoclose: true
+		});
+	} else {
+		this.innerText = '月';
+		$('.datepicker').datepicker('update','');
+		$('.datepicker').datepicker('destroy');
+		$('.datepicker').datepicker({
+			language: 'zh-CN',
+			format: "yyyy年mm",
+			minViewMode: 1,
+			autoclose: true
+		});
+	}
+});
 
+function tline(){
+	$('th.fuckEdge')[0].style.border='1px solid #dddddd';
+}
 $('#table').bootstrapTable({
 	idField: 'time',
 	pageSize: 5,
 	pageList: [10, 25, 50],
 	exportDataType: 'all',
 	exportOptions: {
-		fileName: '操作记录'
+		fileName: '故障报表'
 	},
+	onPostHeader:tline,
 	columns: [
 		[{
 			field: 'time',
@@ -75,6 +102,7 @@ $('#table').bootstrapTable({
 			field: 'powerv',
 			title: '功率侧',
 			align: 'center',
+			class:'fuckEdge'
 		}, {
 			field: 'operationv',
 			title: '控制侧',

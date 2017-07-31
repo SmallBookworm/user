@@ -4,7 +4,17 @@ var json = [{
 	errorname: 'deletuser'
 }];
 
-function tline(){
+$('.datepicker').datepicker({
+	language: 'zh-CN',
+	format: "yyyy年mm月dd",
+	minViewMode: 0,
+	autoclose: true
+}).on('changeDate', function(event) {
+	console.log(event.date);
+});
+dateType(document.getElementById('datetype'));
+
+function tLine(){
 	$('th.fuckEdge')[0].style.border='1px solid #dddddd';
 }
 $('#table').bootstrapTable({
@@ -13,9 +23,9 @@ $('#table').bootstrapTable({
 	pageList: [10, 25, 50],
 	exportDataType: 'all',
 	exportOptions: {
-		fileName: '单次故障报表'
+		fileName: '效果评估表'
 	},
-	onPostHeader:tline,
+	onPostHeader:tLine,
 	columns: [
 		[{
 			field: 'time',
@@ -24,14 +34,14 @@ $('#table').bootstrapTable({
 			colspan: 1,
 			rowspan: 2
 		}, {
-			field: 'devicename',
-			title: '设备名称',
+			field: 'power',
+			title: '功率',
 			align: 'center',
-			colspan: 1,
-			rowspan: 2
+			colspan: 2,
+			rowspan: 1
 		}, {
-			field: 'errorname',
-			title: '故障名称',
+			field: 'powerfactor',
+			title: '功率因数',
 			align: 'center',
 			colspan: 1,
 			rowspan: 2
@@ -39,23 +49,17 @@ $('#table').bootstrapTable({
 			field: 'voltage',
 			title: '电压',
 			align: 'center',
-			colspan: 3,
-			rowspan: 1
+			colspan: 1,
+			rowspan: 2
 		}, {
 			field: 'current',
 			title: '电流',
 			align: 'center',
-			colspan: 2,
-			rowspan: 1
+			colspan: 1,
+			rowspan: 2
 		}, {
 			field: 'frequence',
 			title: '频率',
-			align: 'center',
-			colspan: 2,
-			rowspan: 1
-		}, {
-			field: 'speed',
-			title: '转速',
 			align: 'center',
 			colspan: 1,
 			rowspan: 2
@@ -65,40 +69,39 @@ $('#table').bootstrapTable({
 			align: 'center',
 			colspan: 1,
 			rowspan: 2
+		}, {
+			field: 'speed',
+			title: '转速',
+			align: 'center',
+			colspan: 1,
+			rowspan: 2
+		}, {
+			field: 'flow',
+			title: '流量',
+			align: 'center',
+			colspan: 1,
+			rowspan: 2
+		}, {
+			field: 'whheight',
+			title: '水头高度',
+			align: 'center',
+			colspan: 1,
+			rowspan: 2
+		}, {
+			field: 'waterconsumption',
+			title: '耗水量',
+			align: 'center',
+			colspan: 1,
+			rowspan: 2
 		}],
 		[{
-			field: 'powerv',
-			title: '功率侧',
+			field: 'activep',
+			title: '有功',
 			align: 'center',
-			class:'fuckEdge',
+			class:'fuckEdge'
 		}, {
-			field: 'operationv',
-			title: '控制侧',
-			align: 'center',
-
-		}, {
-			field: 'mv',
-			title: '直流母线',
-			align: 'center',
-
-		}, {
-			field: 'poweri',
-			title: '功率侧',
-			align: 'center',
-
-		}, {
-			field: 'operationi',
-			title: '控制侧',
-			align: 'center',
-
-		}, {
-			field: 'powerf',
-			title: '功率侧',
-			align: 'center',
-
-		}, {
-			field: 'operationf',
-			title: '控制侧',
+			field: 'reactivep',
+			title: '无功',
 			align: 'center',
 
 		}]

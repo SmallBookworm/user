@@ -35,13 +35,10 @@ var json = [{
 	operation: 'deletuser'
 }];
 
-$('.input-group.date').datepicker({
-	language: 'zh-CN',
-	autoclose:true
-}).on('changeDate',function(event){
-	console.log(event);
-});
 
+dateRange($('#table'),function(){
+	return json;
+})
 
 $('#table').bootstrapTable({
 	idField: 'date',
@@ -69,6 +66,5 @@ $('#table').bootstrapTable({
 		title: '操作',
 		align: 'center',
 	}],
-	data: json
+	data: {}
 });
-

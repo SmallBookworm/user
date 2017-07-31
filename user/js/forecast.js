@@ -16,13 +16,12 @@ var option = {
 		textAlign: 'center'
 
 	}, {
-		text: '现在发电量',
+		text: '现在水位',
 		left: '77.5%',
 		top: '1%',
 		textAlign: 'center'
-
 	}, {
-		text: '预测发电量',
+		text: '预测水位',
 		left: '77.5%',
 		top: '51%',
 		textAlign: 'center'
@@ -45,13 +44,13 @@ var option = {
 	},
 	legend: {
 		data: [{
-			name: '周',
+			name: '三天',
 			textStyle: {
 				color: 'red'
 			},
 			icon: 'circle'
 		}, {
-			name: '月',
+			name: '七天',
 			textStyle: {
 				color: 'blue'
 			}
@@ -61,7 +60,7 @@ var option = {
 		left: '2%'
 	},
 	xAxis: {
-		data: ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日']
+		data: ['1','2','3']
 	},
 	yAxis: {
 		type: 'value',
@@ -74,7 +73,31 @@ var option = {
 	},
 	series: [{
 			type: 'bar',
-			name: '周',
+			name: '三天',
+			itemStyle: {
+				normal: {
+					color: {
+						type: 'linear',
+						x: 0,
+						y: 0,
+						x2: 0,
+						y2: 1,
+						colorStops: [{
+							offset: 0,
+							color: 'rgba(14,125,218,0.8)'
+						}, {
+							offset: 1,
+							color: 'rgba(14,125,218,0.3)'
+						}],
+						globalCoord: false
+					}
+				}
+			},
+			data: pcpnData.slice(0,3)
+		},
+		{
+			type: 'bar',
+			name: '七天',
 			itemStyle: {
 				normal: {
 					color: {
@@ -97,31 +120,7 @@ var option = {
 			data: pcpnData.slice(0,7)
 		},
 		{
-			type: 'bar',
-			name: '月',
-			itemStyle: {
-				normal: {
-					color: {
-						type: 'linear',
-						x: 0,
-						y: 0,
-						x2: 0,
-						y2: 1,
-						colorStops: [{
-							offset: 0,
-							color: 'rgba(14,125,218,0.8)'
-						}, {
-							offset: 1,
-							color: 'rgba(14,125,218,0.3)'
-						}],
-						globalCoord: false
-					}
-				}
-			},
-			data: pcpnData
-		},
-		{
-			name: '现在发电量',
+			name: '现在水位',
 			type: 'gauge',
 			center: ['77.5%', '25%'], // 默认全局居中
 			min: 0,
@@ -169,7 +168,7 @@ var option = {
 			}]
 		},
 		{
-			name: '预测发电量',
+			name: '预测水位',
 			type: 'gauge',
 			center: ['77.5%', '75%'], // 默认全局居中
 			min: 0,
@@ -232,19 +231,19 @@ window.onresize = function() {
 
 myChart.setOption(option, true);
 myChart.on('legendselectchanged', function(param) {
-	if(param.name == '月')
+	if(param.name == '七天')
 		myChart.setOption({
 			xAxis: {
-				data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+				data: ['1', '2', '3', '4', '5', '6', '7']
 			},
 			series: [{
-				name: '预测发电量',
+				name: '预测水位',
 				data: [{
 					value: 2800,
 					name: 'kW·h'
 				}]
 			}, {
-				name: '现在发电量',
+				name: '现在水位',
 				data: [{
 					value: 1800,
 					name: 'kW·h'
@@ -254,16 +253,16 @@ myChart.on('legendselectchanged', function(param) {
 	else
 		myChart.setOption({
 			xAxis: {
-				data: ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日']
+				data: ['1', '2', '3']
 			},
 			series: [{
-				name: '预测发电量',
+				name: '预测水位',
 				data: [{
 					value: 234,
 					name: 'kW·h'
 				}]
 			}, {
-				name: '现在发电量',
+				name: '现在水位',
 				data: [{
 					value: 641,
 					name: 'kW·h'

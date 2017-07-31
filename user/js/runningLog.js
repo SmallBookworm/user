@@ -35,12 +35,9 @@ var json = [{
 	endtime: '10:54'
 }];
 
-$('.input-group.date').datepicker({
-	language: 'zh-CN',
-	autoclose:true
-}).on('changeDate',function(event){
-	console.log(event);
-});
+dateRange($('#table'),function(){
+	return json;
+})
 
 $('#table').bootstrapTable({
 	idField: 'date',
@@ -68,5 +65,5 @@ $('#table').bootstrapTable({
 		title: '关机时间',
 		align: 'center',
 	}],
-	data: json
+	data: {}
 });
