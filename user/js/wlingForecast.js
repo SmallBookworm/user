@@ -1,11 +1,9 @@
-//$.getJSON('https://free-api.heweather.com/v5/now?city=长沙&key=973947faf2ad4dbca52cd973ed2a1d91', function(data) {
-//	console.log(data)
-//});
+
 var main = document.getElementById('main');
 // 基于准备好的dom，初始化echarts实例
 var myChart = echarts.init(document.getElementById('main'));
 //降雨量
-var pcpnData=[22, 0, 12, 42, 12, 25, 35, 12, 32, 15];
+var pcpnData = [22, 0, 12, 42, 12, 25, 35, 12, 32, 15];
 // 指定图表的配置项和数据
 var option = {
 	backgroundColor: 'rgba(255,255,255,0)',
@@ -16,12 +14,12 @@ var option = {
 		textAlign: 'center'
 
 	}, {
-		text: '现在水位',
+		text: '预测水位',
 		left: '77.5%',
 		top: '1%',
 		textAlign: 'center'
 	}, {
-		text: '预测水位',
+		text: '现在水位',
 		left: '77.5%',
 		top: '51%',
 		textAlign: 'center'
@@ -45,22 +43,17 @@ var option = {
 	legend: {
 		data: [{
 			name: '三天',
-			textStyle: {
-				color: 'red'
-			},
 			icon: 'circle'
 		}, {
 			name: '七天',
-			textStyle: {
-				color: 'blue'
-			}
+			icon: 'circle'
 		}],
 		selectedMode: 'single',
 		top: '1%',
 		left: '2%'
 	},
 	xAxis: {
-		data: ['1','2','3']
+		data: ['1', '2', '3']
 	},
 	yAxis: {
 		type: 'value',
@@ -93,7 +86,7 @@ var option = {
 					}
 				}
 			},
-			data: pcpnData.slice(0,3)
+			data: pcpnData.slice(0, 3)
 		},
 		{
 			type: 'bar',
@@ -117,10 +110,10 @@ var option = {
 					}
 				}
 			},
-			data: pcpnData.slice(0,7)
+			data: pcpnData.slice(0, 7)
 		},
 		{
-			name: '现在水位',
+			name: '预测水位',
 			type: 'gauge',
 			center: ['77.5%', '25%'], // 默认全局居中
 			min: 0,
@@ -133,13 +126,7 @@ var option = {
 				show: true,
 				lineStyle: {
 					width: 15,
-					shadowBlur: 0,
-					color: [
-						[0.25, '#ff4500'],
-						[0.5, '#ffa500'],
-						[0.75, '#90ee90'],
-						[1, '#87ceeb']
-					]
+					shadowBlur: 0
 				}
 			},
 			axisTick: { // 坐标轴小标记
@@ -168,7 +155,7 @@ var option = {
 			}]
 		},
 		{
-			name: '预测水位',
+			name: '现在水位',
 			type: 'gauge',
 			center: ['77.5%', '75%'], // 默认全局居中
 			min: 0,
@@ -181,13 +168,7 @@ var option = {
 				show: true,
 				lineStyle: {
 					width: 15,
-					shadowBlur: 0,
-					color: [
-						[0.25, '#ff4500'],
-						[0.5, '#ffa500'],
-						[0.75, '#90ee90'],
-						[1, '#87ceeb']
-					]
+					shadowBlur: 0
 				}
 			},
 			axisTick: { // 坐标轴小标记
@@ -228,6 +209,21 @@ document.addEventListener('DOMContentLoaded', initMain);
 window.onresize = function() {
 	initMain();
 };
+//url='http://tj.nineton.cn/Heart/index/all?city=CHHN000000&language=zh-chs&unit=c&aqi=city&alarm=1&key=78928e706123c1a8f1766f062bc8676b';
+//$.ajax({
+//	url: url,
+//	type: 'get',
+//	headers:{'Access-Control-Allow-Origin':'*'},
+//	dataType: 'json',
+//	error: function(result) {
+//		console.log(result);
+//	},
+//	success: function(result) {
+//		if(result != null) {console.log(result);
+//			myChart.setOption(option, true);
+//		}
+//	}
+//});
 
 myChart.setOption(option, true);
 myChart.on('legendselectchanged', function(param) {

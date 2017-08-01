@@ -2643,8 +2643,7 @@
 											q[indexAttr] != null ||
 											q[idAttr] != null ||
 											q[nameAttr] != null
-										) ?
-										{
+										) ? {
 											mainType: mainType,
 											// subType will be filtered finally.
 											index: q[indexAttr],
@@ -3585,9 +3584,7 @@
 						modelUtil.normalizeToArray = function(value) {
 							return value instanceof Array ?
 								value :
-								value == null ?
-								[] :
-								[value];
+								value == null ? [] : [value];
 						};
 
 						/**
@@ -11261,8 +11258,7 @@
 								'rgba'
 							);
 
-							return fullOutput ?
-								{
+							return fullOutput ? {
 									color: color,
 									leftIndex: leftIndex,
 									rightIndex: rightIndex,
@@ -14816,8 +14812,7 @@
 											style[shadowTemp[j][0]] = shadowTemp[j][2];
 										}
 									}
-								} :
-								Path.prototype.brush,
+								} : Path.prototype.brush,
 
 							buildPath: function(ctx, shape) {
 
@@ -27256,8 +27251,7 @@
 						function getSymbolSize(data, idx) {
 							var symbolSize = data.getItemVisual(idx, 'symbolSize');
 							return symbolSize instanceof Array ?
-								symbolSize.slice() :
-								[+symbolSize, +symbolSize];
+								symbolSize.slice() : [+symbolSize, +symbolSize];
 						}
 
 						function getScale(symbolSize) {
@@ -30150,8 +30144,7 @@
 													// it as 'string' to avoid error in replacing.
 													axis.type === 'category' ? labelStr : axis.type === 'value' ? tickVal + '' : tickVal,
 													index
-												) :
-												textColor
+												) : textColor
 										},
 										position: pos,
 										rotation: labelLayout.rotation,
@@ -30291,8 +30284,7 @@
 												return name;
 											},
 											formatterParams: formatterParams
-										}, tooltipOpt) :
-										null
+										}, tooltipOpt) : null
 								});
 
 								if(axisModel.get('triggerEvent')) {
@@ -32663,8 +32655,7 @@
 											cy: cy,
 											r0: r0,
 											r: roseType ?
-												NaN :
-												r
+												NaN : r
 										});
 										return;
 									}
@@ -32694,8 +32685,7 @@
 										cy: cy,
 										r0: r0,
 										r: roseType ?
-											numberUtil.linearMap(value, extent, [r0, r]) :
-											r
+											numberUtil.linearMap(value, extent, [r0, r]) : r
 									});
 
 									currentAngle = endAngle;
@@ -35725,8 +35715,7 @@
 							dataToPoint: function(data) {
 								var transform = this.transform;
 								return transform ?
-									v2ApplyTransform([], data, transform) :
-									[data[0], data[1]];
+									v2ApplyTransform([], data, transform) : [data[0], data[1]];
 							},
 
 							/**
@@ -35737,8 +35726,7 @@
 							pointToData: function(point) {
 								var invTransform = this.invTransform;
 								return invTransform ?
-									v2ApplyTransform([], point, invTransform) :
-									[point[0], point[1]];
+									v2ApplyTransform([], point, invTransform) : [point[0], point[1]];
 							},
 
 							/**
@@ -38395,8 +38383,7 @@
 								var thisStorage = this._storage;
 
 								// Mark new root when action is treemapRootToNode.
-								var reRoot = (payloadType === 'treemapRootToNode' && targetInfo && thisStorage) ?
-									{
+								var reRoot = (payloadType === 'treemapRootToNode' && targetInfo && thisStorage) ? {
 										rootNodeGroup: thisStorage.nodeGroup[targetInfo.node.getRawIndex()],
 										direction: payload.direction
 									} :
@@ -38601,24 +38588,22 @@
 												targetY = parent.__tmNodeHeight / 2;
 											}
 
-											target = storageName === 'nodeGroup' ?
-												{
-													position: [targetX, targetY],
-													style: {
-														opacity: 0
-													}
-												} :
-												{
-													shape: {
-														x: targetX,
-														y: targetY,
-														width: 0,
-														height: 0
-													},
-													style: {
-														opacity: 0
-													}
-												};
+											target = storageName === 'nodeGroup' ? {
+												position: [targetX, targetY],
+												style: {
+													opacity: 0
+												}
+											} : {
+												shape: {
+													x: targetX,
+													y: targetY,
+													width: 0,
+													height: 0
+												},
+												style: {
+													opacity: 0
+												}
+											};
 										}
 
 										target && animationWrap.add(el, target, duration, easing);
@@ -38849,8 +38834,7 @@
 							 */
 							_renderBreadcrumb: function(seriesModel, api, targetInfo) {
 								if(!targetInfo) {
-									targetInfo = seriesModel.get('leafDepth', true) != null ?
-										{
+									targetInfo = seriesModel.get('leafDepth', true) != null ? {
 											node: seriesModel.getViewRoot()
 										}
 										// FIXME
@@ -39249,14 +39233,12 @@
 
 									// When no parent old shape found, its parent is new too,
 									// so we can just use {x:0, y:0}.
-									lastCfg.old = storageName === 'nodeGroup' ?
-										[0, parentOldY] :
-										{
-											x: parentOldX,
-											y: parentOldY,
-											width: 0,
-											height: 0
-										};
+									lastCfg.old = storageName === 'nodeGroup' ? [0, parentOldY] : {
+										x: parentOldX,
+										y: parentOldY,
+										width: 0,
+										height: 0
+									};
 								}
 
 								// Fade in, user can be aware that these nodes are new.
@@ -40312,10 +40294,8 @@
 
 						VisualMapping.mapVisual = function(visual, callback, context) {
 							var isPrimary;
-							var newVisual = zrUtil.isArray(visual) ?
-								[] :
-								zrUtil.isObject(visual) ?
-								{} :
+							var newVisual = zrUtil.isArray(visual) ? [] :
+								zrUtil.isObject(visual) ? {} :
 								(isPrimary = true, null);
 
 							VisualMapping.eachVisual(visual, function(v, key) {
@@ -40541,9 +40521,7 @@
 										estimateRootSize(
 											seriesModel, targetInfo, viewRoot, containerWidth, containerHeight
 										) :
-										rootRect ?
-										[rootRect.width, rootRect.height] :
-										[containerWidth, containerHeight];
+										rootRect ? [rootRect.width, rootRect.height] : [containerWidth, containerHeight];
 
 									var sort = seriesOption.sort;
 									if(sort && sort !== 'asc' && sort !== 'desc') {
@@ -42852,8 +42830,7 @@
 
 							tangentAt: function(t) {
 								var shape = this.shape;
-								var p = isLine(shape) ?
-									[shape.x2 - shape.x1, shape.y2 - shape.y1] :
+								var p = isLine(shape) ? [shape.x2 - shape.x1, shape.y2 - shape.y1] :
 									bezierCurveProto.tangentAt.call(this, t);
 								return vec2.normalize(p, p);
 							}
@@ -47445,8 +47422,7 @@
 											type: 'ordinal'
 										};
 									} else if(modelDimsIndex < 0) {
-										return completeDimensions.guessOrdinal(rawData, dimIndex) ?
-											{
+										return completeDimensions.guessOrdinal(rawData, dimIndex) ? {
 												name: dim,
 												type: 'ordinal'
 											} :
@@ -48176,8 +48152,7 @@
 									graphic.setHoverStyle(rect, zrUtil.extend(
 										node.getModel('itemStyle.emphasis'), {
 											text: labelHoverModel.get('show') ?
-												seriesModel.getFormattedLabel(node.dataIndex, 'emphasis') || node.id :
-												'',
+												seriesModel.getFormattedLabel(node.dataIndex, 'emphasis') || node.id : '',
 											textFont: textStyleHoverModel.getFont(),
 											textFill: textStyleHoverModel.getTextColor(),
 											textPosition: labelHoverModel.get('position')
@@ -49078,8 +49053,7 @@
 							this.add(new graphic.Polygon({
 								shape: {
 									points: isInit ?
-										transInit(itemLayout.bodyEnds, constDim, itemLayout) :
-										itemLayout.bodyEnds
+										transInit(itemLayout.bodyEnds, constDim, itemLayout) : itemLayout.bodyEnds
 								},
 								style: {
 									strokeNoScale: true
@@ -49822,8 +49796,7 @@
 										var p = [];
 										p[variableDim] = axisDimVal;
 										p[constDim] = val;
-										return(isNaN(axisDimVal) || isNaN(val)) ?
-											[NaN, NaN] :
+										return(isNaN(axisDimVal) || isNaN(val)) ? [NaN, NaN] :
 											coordSys.dataToPoint(p);
 									}
 
@@ -51327,16 +51300,14 @@
 								var hoverLabelModel = seriesModel.getModel('label.emphasis');
 								var coordSysType = coordSys.type;
 
-								var dataDims = coordSysType === 'cartesian2d' ?
-									[
-										seriesModel.coordDimToDataDim('x')[0],
-										seriesModel.coordDimToDataDim('y')[0],
-										seriesModel.coordDimToDataDim('value')[0]
-									] :
-									[
-										seriesModel.coordDimToDataDim('time')[0],
-										seriesModel.coordDimToDataDim('value')[0]
-									];
+								var dataDims = coordSysType === 'cartesian2d' ? [
+									seriesModel.coordDimToDataDim('x')[0],
+									seriesModel.coordDimToDataDim('y')[0],
+									seriesModel.coordDimToDataDim('value')[0]
+								] : [
+									seriesModel.coordDimToDataDim('time')[0],
+									seriesModel.coordDimToDataDim('value')[0]
+								];
 
 								data.each(function(idx) {
 									var rect;
@@ -55246,10 +55217,8 @@
 										name: 'time',
 										// FIXME common?
 										type: axisType === 'category' ?
-											'ordinal' :
-											axisType === 'time' ?
-											'time' :
-											'float'
+											'ordinal' : axisType === 'time' ?
+											'time' : 'float'
 									},
 									{
 										name: 'value',
@@ -55570,8 +55539,7 @@
 										text.setStyle({
 											text: labelModel.get('show') ?
 												seriesModel.getFormattedLabel(indices[j - 1], 'normal') ||
-												data.getName(indices[j - 1]) :
-												'',
+												data.getName(indices[j - 1]) : '',
 											textFont: textStyleModel.getFont(),
 											textAlign: labelModel.get('textAlign'),
 											textVerticalAlign: 'middle'
@@ -56989,15 +56957,13 @@
 									}
 
 									var parentEl = el.parent;
-									var containerInfo = parentEl === rootGroup ?
-										{
-											width: api.getWidth(),
-											height: api.getHeight()
-										} :
-										{ // Like 'position:absolut' in css, default 0.
-											width: parentEl.__ecGraphicWidth || 0,
-											height: parentEl.__ecGraphicHeight || 0
-										};
+									var containerInfo = parentEl === rootGroup ? {
+										width: api.getWidth(),
+										height: api.getHeight()
+									} : { // Like 'position:absolut' in css, default 0.
+										width: parentEl.__ecGraphicWidth || 0,
+										height: parentEl.__ecGraphicHeight || 0
+									};
 
 									layoutUtil.positionElement(
 										el, elOption, containerInfo, null, {
@@ -60166,48 +60132,44 @@
 						var pointerShapeBuilder = {
 
 							line: function(axis, polar, coordValue, otherExtent, elStyle) {
-								return axis.dim === 'angle' ?
-									{
-										type: 'Line',
-										shape: viewHelper.makeLineShape(
-											polar.coordToPoint([otherExtent[0], coordValue]),
-											polar.coordToPoint([otherExtent[1], coordValue])
-										)
-									} :
-									{
-										type: 'Circle',
-										shape: {
-											cx: polar.cx,
-											cy: polar.cy,
-											r: coordValue
-										}
-									};
+								return axis.dim === 'angle' ? {
+									type: 'Line',
+									shape: viewHelper.makeLineShape(
+										polar.coordToPoint([otherExtent[0], coordValue]),
+										polar.coordToPoint([otherExtent[1], coordValue])
+									)
+								} : {
+									type: 'Circle',
+									shape: {
+										cx: polar.cx,
+										cy: polar.cy,
+										r: coordValue
+									}
+								};
 							},
 
 							shadow: function(axis, polar, coordValue, otherExtent, elStyle) {
 								var bandWidth = axis.getBandWidth();
 								var radian = Math.PI / 180;
 
-								return axis.dim === 'angle' ?
-									{
-										type: 'Sector',
-										shape: viewHelper.makeSectorShape(
-											polar.cx, polar.cy,
-											otherExtent[0], otherExtent[1],
-											// In ECharts y is negative if angle is positive
-											(-coordValue - bandWidth / 2) * radian,
-											(-coordValue + bandWidth / 2) * radian
-										)
-									} :
-									{
-										type: 'Sector',
-										shape: viewHelper.makeSectorShape(
-											polar.cx, polar.cy,
-											coordValue - bandWidth / 2,
-											coordValue + bandWidth / 2,
-											0, Math.PI * 2
-										)
-									};
+								return axis.dim === 'angle' ? {
+									type: 'Sector',
+									shape: viewHelper.makeSectorShape(
+										polar.cx, polar.cy,
+										otherExtent[0], otherExtent[1],
+										// In ECharts y is negative if angle is positive
+										(-coordValue - bandWidth / 2) * radian,
+										(-coordValue + bandWidth / 2) * radian
+									)
+								} : {
+									type: 'Sector',
+									shape: viewHelper.makeSectorShape(
+										polar.cx, polar.cy,
+										coordValue - bandWidth / 2,
+										coordValue + bandWidth / 2,
+										0, Math.PI * 2
+									)
+								};
 							}
 						};
 
@@ -61938,9 +61900,7 @@
 						}
 
 						function getSize(xyMinMax) {
-							return xyMinMax ?
-								[xyMinMax[0][1] - xyMinMax[0][0], xyMinMax[1][1] - xyMinMax[1][0]] :
-								[NaN, NaN];
+							return xyMinMax ? [xyMinMax[0][1] - xyMinMax[0][0], xyMinMax[1][1] - xyMinMax[1][0]] : [NaN, NaN];
 						}
 
 						module.exports = BrushTargetManager;
@@ -62386,8 +62346,7 @@
 											brushType :
 											(brushType === type ? false : type),
 										brushMode: type === 'keep' ?
-											(brushMode === 'multiple' ? 'single' : 'multiple') :
-											brushMode
+											(brushMode === 'multiple' ? 'single' : 'multiple') : brushMode
 									}
 								});
 							}
@@ -65246,21 +65205,19 @@
 									height: api.getHeight()
 								};
 								// Default align by coordinate system rect.
-								var positionInfo = this._orient === HORIZONTAL ?
-									{
-										// Why using 'right', because right should be used in vertical,
-										// and it is better to be consistent for dealing with position param merge.
-										right: ecSize.width - coordRect.x - coordRect.width,
-										top: (ecSize.height - DEFAULT_FILLER_SIZE - DEFAULT_LOCATION_EDGE_GAP),
-										width: coordRect.width,
-										height: DEFAULT_FILLER_SIZE
-									} :
-									{ // vertical
-										right: DEFAULT_LOCATION_EDGE_GAP,
-										top: coordRect.y,
-										width: DEFAULT_FILLER_SIZE,
-										height: coordRect.height
-									};
+								var positionInfo = this._orient === HORIZONTAL ? {
+									// Why using 'right', because right should be used in vertical,
+									// and it is better to be consistent for dealing with position param merge.
+									right: ecSize.width - coordRect.x - coordRect.width,
+									top: (ecSize.height - DEFAULT_FILLER_SIZE - DEFAULT_LOCATION_EDGE_GAP),
+									width: coordRect.width,
+									height: DEFAULT_FILLER_SIZE
+								} : { // vertical
+									right: DEFAULT_LOCATION_EDGE_GAP,
+									top: coordRect.y,
+									width: DEFAULT_FILLER_SIZE,
+									height: coordRect.height
+								};
 
 								// Do not write back to option and replace value 'ph', because
 								// the 'ph' value should be recalculated when resize.
@@ -65304,16 +65261,13 @@
 
 								// Transform barGroup.
 								barGroup.attr(
-									(orient === HORIZONTAL && !inverse) ?
-									{
+									(orient === HORIZONTAL && !inverse) ? {
 										scale: otherAxisInverse ? [1, 1] : [1, -1]
 									} :
-									(orient === HORIZONTAL && inverse) ?
-									{
+									(orient === HORIZONTAL && inverse) ? {
 										scale: otherAxisInverse ? [-1, 1] : [-1, -1]
 									} :
-									(orient === VERTICAL && !inverse) ?
-									{
+									(orient === VERTICAL && !inverse) ? {
 										scale: otherAxisInverse ? [1, -1] : [1, 1],
 										rotation: Math.PI / 2
 									}
@@ -67145,8 +67099,7 @@
 							resetTargetSeries: function() {
 								var thisOption = this.option;
 								var allSeriesIndex = thisOption.seriesIndex == null;
-								thisOption.seriesIndex = allSeriesIndex ?
-									[] : modelUtil.normalizeToArray(thisOption.seriesIndex);
+								thisOption.seriesIndex = allSeriesIndex ? [] : modelUtil.normalizeToArray(thisOption.seriesIndex);
 
 								allSeriesIndex && this.ecModel.eachSeries(function(seriesModel, index) {
 									thisOption.seriesIndex.push(index);
@@ -67203,8 +67156,7 @@
 
 								textValue = isCategory ?
 									value :
-									(isMinMax ?
-										[toFixed(value[0]), toFixed(value[1])] :
+									(isMinMax ? [toFixed(value[0]), toFixed(value[1])] :
 										toFixed(value)
 									);
 
@@ -68058,21 +68010,17 @@
 								var inverse = this.visualMapModel.get('inverse');
 
 								return new graphic.Group(
-									(orient === 'horizontal' && !inverse) ?
-									{
+									(orient === 'horizontal' && !inverse) ? {
 										scale: itemAlign === 'bottom' ? [1, 1] : [-1, 1],
 										rotation: Math.PI / 2
 									} :
-									(orient === 'horizontal' && inverse) ?
-									{
+									(orient === 'horizontal' && inverse) ? {
 										scale: itemAlign === 'bottom' ? [-1, 1] : [1, 1],
 										rotation: -Math.PI / 2
 									} :
-									(orient === 'vertical' && !inverse) ?
-									{
+									(orient === 'vertical' && !inverse) ? {
 										scale: itemAlign === 'left' ? [1, -1] : [-1, -1]
-									} :
-									{
+									} : {
 										scale: itemAlign === 'left' ? [1, 1] : [-1, 1]
 									}
 								);
@@ -68386,31 +68334,27 @@
 						}
 
 						function createHandlePoints(handleIndex, textSize) {
-							return handleIndex === 0 ?
-								[
-									[0, 0],
-									[textSize, 0],
-									[textSize, -textSize]
-								] :
-								[
-									[0, 0],
-									[textSize, 0],
-									[textSize, textSize]
-								];
+							return handleIndex === 0 ? [
+								[0, 0],
+								[textSize, 0],
+								[textSize, -textSize]
+							] : [
+								[0, 0],
+								[textSize, 0],
+								[textSize, textSize]
+							];
 						}
 
 						function createIndicatorPoints(isRange, halfHoverLinkSize, pos, extentMax) {
-							return isRange ?
-								[ // indicate range
-									[0, -mathMin(halfHoverLinkSize, mathMax(pos, 0))],
-									[HOVER_LINK_OUT, 0],
-									[0, mathMin(halfHoverLinkSize, mathMax(extentMax - pos, 0))]
-								] :
-								[ // indicate single value
-									[0, 0],
-									[5, -5],
-									[5, 5]
-								];
+							return isRange ? [ // indicate range
+								[0, -mathMin(halfHoverLinkSize, mathMax(pos, 0))],
+								[HOVER_LINK_OUT, 0],
+								[0, mathMin(halfHoverLinkSize, mathMax(extentMax - pos, 0))]
+							] : [ // indicate single value
+								[0, 0],
+								[5, -5],
+								[5, 5]
+							];
 						}
 
 						function getHalfHoverLinkSize(visualMapModel, dataExtent, sizeExtent) {
@@ -72043,8 +71987,7 @@
 
 							var symbolSize = hostModel.get('symbolSize');
 							symbolSize = symbolSize instanceof Array ?
-								symbolSize.slice() :
-								[+symbolSize, +symbolSize];
+								symbolSize.slice() : [+symbolSize, +symbolSize];
 							symbolSize[0] /= 2;
 							symbolSize[1] /= 2;
 							opt.scale = symbolSize;
@@ -72616,22 +72559,24 @@
 							}
 							// IE
 							else {
-								//	            var lang = model.get('lang');
-								//	            var html = ''
-								//	                + '<body style="margin:0;">'
-								//	                + '<img src="' + url + '" style="max-width:100%;" title="' + ((lang && lang[0]) || '') + '" />'
-								//	                + '</body>';
-								//	            var tab = window.open();
-								//	            tab.document.write(html);
-								var bstr = atob(url.split(',')[1]);
-								var n = bstr.length;
-								var u8arr = new Uint8Array(n);
-								while(n--) {
-									u8arr[n] = bstr.charCodeAt(n);
+								if(window.navigator.msSaveOrOpenBlob) {
+									var bstr = atob(url.split(',')[1]);
+									var n = bstr.length;
+									var u8arr = new Uint8Array(n);
+									while(n--) {
+										u8arr[n] = bstr.charCodeAt(n);
+									}
+									var blob = new Blob([u8arr]);
+									window.navigator.msSaveOrOpenBlob(blob, title + '.' + type);
+								} else {
+									var lang = model.get('lang');
+									var html = '' +
+										'<body style="margin:0;">' +
+										'<img src="' + url + '" style="max-width:100%;" title="' + ((lang && lang[0]) || '') + '" />' +
+										'</body>';
+									var tab = window.open();
+									tab.document.write(html);
 								}
-
-								var blob = new Blob([u8arr]);
-								window.navigator.msSaveOrOpenBlob(blob, title + '.' + type);
 							}
 						};
 
@@ -73519,8 +73464,7 @@
 										'rect';
 								}))
 								.enableBrush(
-									zoomActive ?
-									{
+									zoomActive ? {
 										brushType: 'auto',
 										brushStyle: {
 											// FIXME user customized?
