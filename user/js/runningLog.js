@@ -35,9 +35,9 @@ var json = [{
 	endtime: '10:54'
 }];
 
-dateRange($('#table'),function(){
-	return json;
-})
+(new dateRange($('#start'), $('#end'), function() {
+	$('#table').bootstrapTable('load', json)
+})).initRange();
 
 $('#table').bootstrapTable({
 	idField: 'date',
