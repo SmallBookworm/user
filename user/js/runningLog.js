@@ -3,39 +3,40 @@ var json = [{
 	starttime: '10:54',
 	username: 'pwj',
 	endtime: '23:54'
-},{
+}, {
 	date: '2017-7-29',
 	starttime: '7:54',
 	username: 'pwj',
 	endtime: '22:54'
-},{
+}, {
 	date: '2017-7-12',
 	starttime: '10:54',
 	username: 'pwj',
 	endtime: '20:54'
-},{
+}, {
 	date: '2017-6-20',
 	starttime: '8:54',
 	username: 'pwj',
 	endtime: '12:54'
-},{
+}, {
 	date: '2017-5-20',
 	starttime: '6:54',
 	username: 'pwj',
 	endtime: '10:54'
-},{
+}, {
 	date: '2017-1-20',
 	starttime: '7:54',
 	username: 'pwj',
 	endtime: '10:54'
-},{
+}, {
 	date: '2017-11-20',
 	starttime: '4:32',
 	username: 'pwj',
 	endtime: '10:54'
 }];
 
-(new dateRange($('#start'), $('#end'), function() {
+(new dateRange($('#start'), $('#end'), function(start, end) {
+	console.log(start, end)
 	$('#table').bootstrapTable('load', json)
 })).initRange();
 
@@ -52,11 +53,11 @@ $('#table').bootstrapTable({
 		title: '日期',
 		align: 'center',
 		sortable: true
-	},{
+	}, {
 		field: 'username',
 		title: '登录名',
 		align: 'center',
-	},{
+	}, {
 		field: 'starttime',
 		title: '开机时间',
 		align: 'center',
