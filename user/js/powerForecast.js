@@ -17,12 +17,12 @@ var option = {
 		textAlign: 'center'
 
 	}, {
-		text: '预测电量',
+		text: '预测发电量',
 		left: '77.5%',
 		top: '0.5%',
 		textAlign: 'center'
 	}, {
-		text: '现在电量',
+		text: '现在发电量',
 		left: '77.5%',
 		top: '54%',
 		textAlign: 'center'
@@ -121,7 +121,12 @@ var option = {
 		},
 		{
 			type: 'line',
-			name: '去年水位',
+			name: '同水位最大发电量',
+			data: pcpnData2.slice(3, 6)
+		},
+		{
+			type: 'line',
+			name: '同水位最小发电量',
 			data: pcpnData2.slice(0, 3)
 		},
 		{

@@ -83,17 +83,17 @@ dateRange.prototype.initRAT = function(button) {
 	this.initRange();
 	button.addEventListener('click', function(event) {
 		if(this.innerText === '日') {
-			this.innerText = '年';
+			this.innerHTML = '年<i class="glyphicon glyphicon-triangle-bottom"></i>';
 			datef.format = "yyyy";
 			datef.minViewMode = 2;
 
 		} else if(this.innerText === '月') {
-			this.innerText = '日';
+			this.innerHTML = '日<i class="glyphicon glyphicon-triangle-bottom"></i>';
 			datef.format = "yyyy年mm月dd";
 			datef.minViewMode = 0;
 
 		} else if(this.innerText === '年') {
-			this.innerText = '月';
+			this.innerHTML = '月<i class="glyphicon glyphicon-triangle-bottom"></i>';
 			datef.format = "yyyy年mm";
 			datef.minViewMode = 1;
 		}

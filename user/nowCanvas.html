@@ -9,14 +9,68 @@
 			canvas {
 				margin: 0;
 				padding: 0;
-				overflow: hidden
+				overflow-x: hidden;
+			}
+			
+			table.hovertable {
+				font-family: verdana, arial, sans-serif;
+				font-size: 11px;
+				color: #333333;
+				border-width: 1px;
+				border-color: #999999;
+				border-collapse: collapse;
+			}
+			
+			table.hovertable th {
+				background-color: #c3dde0;
+				border-width: 1px;
+				padding: 8px;
+				border-style: solid;
+				border-color: #a9c6c9;
+			}
+			
+			table.hovertable tr {
+				background-color: #d4e3e5;
+			}
+			
+			table.hovertable td {
+				border-width: 1px;
+				padding: 8px;
+				border-style: solid;
+				border-color: #a9c6c9;
 			}
 		</style>
 		<title>nowInfo</title>
 	</head>
 
 	<body onload="init()">
+		<select id="NO">
+			<option>1号机组</option>
+			<option>2号机组</option>
+		</select>
+		<span>更新时间:2017/08/03</span>
 		<canvas id='main'></canvas>
+		<div class="container-fluid">
+			<div class="row">
+
+				<div class=" col-md-6 col-md-offset-3 ">
+					<table id="ctable" class=" hovertable" border="1">
+						<tr>
+							<th style="text-align: center;">设备</th>
+							<th style="text-align: center;">参数名</th>
+							<th style="text-align: center;">更新时间</th>
+							<th style="text-align: center;">参数值</th>
+						</tr>
+						<tr onmouseover="this.style.backgroundColor='#ffff66';" onmouseout="this.style.backgroundColor='#d4e3e5';">
+							<td rowspan="14">水轮机</td>
+							<td>大轴摆度</td>
+							<td id="t-1">Item 1B</td>
+							<td id="v-1">Item 1C</td>
+						</tr>
+					</table>
+				</div>
+
+			</div>
 	</body>
 	<script src="js/nowCanvas.js"></script>
 
