@@ -7,7 +7,7 @@ var json = [{
 		IDcard: '430145786878086235',
 		username: '123',
 		password: 'as123',
-		kind: '1',
+		company: '1',
 		state: '启用'
 	}, {
 		name: '李四',
@@ -18,7 +18,7 @@ var json = [{
 		IDcard: '430145786878086235',
 		username: 'sdsd32',
 		password: 'as123',
-		kind: '1',
+		company: '1',
 		state: '不启用'
 	},
 	{
@@ -30,7 +30,7 @@ var json = [{
 		IDcard: '430145786878086235',
 		username: '46768',
 		password: 'as123',
-		kind: '1',
+		company: '1',
 		state: '启用'
 	},
 	{
@@ -42,7 +42,7 @@ var json = [{
 		IDcard: '430145786878086235',
 		username: '756',
 		password: 'as123',
-		kind: '1',
+		company: '1',
 		state: '启用'
 	},
 	{
@@ -54,7 +54,7 @@ var json = [{
 		IDcard: '430145786878086235',
 		username: '074',
 		password: 'as123',
-		kind: '1',
+		company: '1',
 		state: '启用'
 	},
 	{
@@ -66,7 +66,7 @@ var json = [{
 		IDcard: '430145786878086235',
 		username: '654678',
 		password: 'as123',
-		kind: '1',
+		company: '1',
 		state: '不启用'
 	},
 	{
@@ -78,7 +78,7 @@ var json = [{
 		IDcard: '430145786878086235',
 		username: '5435',
 		password: 'as123',
-		kind: '1',
+		company: '1',
 		state: '启用'
 	},
 	{
@@ -90,7 +90,7 @@ var json = [{
 		IDcard: '430145786878086235',
 		username: '14234',
 		password: 'as123',
-		kind: '1',
+		company: '1',
 		state: '启用'
 	},
 	{
@@ -102,7 +102,7 @@ var json = [{
 		IDcard: '430145786878086235',
 		username: '24234',
 		password: 'as123',
-		kind: '1',
+		company: '1',
 		state: '不启用'
 	},
 	{
@@ -114,7 +114,7 @@ var json = [{
 		IDcard: '430145786878086235',
 		username: '1234',
 		password: 'as123',
-		kind: '1',
+		company: '1',
 		state: '不启用'
 	}
 ];
@@ -130,7 +130,7 @@ var zhCN = {
 	telephone: '电话',
 	IDcard: '身份证号',
 	password: '密码',
-	kind: '类别',
+	company: '所属集团',
 	state: '状态'
 };
 

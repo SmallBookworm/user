@@ -65,7 +65,30 @@ var otherInfo = {
 
 };
 
+function createTable(name, json) {
+	var table = document.getElementById('ctable');
+	var td = document.createElement('td');
+	var tr = document.createElement('tr');
+	td.textContent = name;
+	td.rowSpan = Object.keys(json).length + 1;
+	tr.appendChild(td);
+	ctable.appendChild(tr);
+	for(var i in json) {
+		var tr = document.createElement('tr');
+		td = document.createElement('td');
+		td.textContent = i;
+		tr.appendChild(td);
+		td = document.createElement('td');
+		td.textContent = json[i][0];
+		tr.appendChild(td);
+		ctable.appendChild(tr);
+	}
+}
+
 function init() {
+	createTable('水轮机', wr);
+	createTable('发电机', dynamoInfo);
+	createTable('其他参数', otherInfo);
 	var canvas = document.getElementById('main');
 	var ctx = canvas.getContext('2d');
 
@@ -82,7 +105,7 @@ function init() {
 	function resizeCanvas() {
 		document.getElementById('NO').style.height = '20px';
 		canvas.width = window.innerWidth;
-		canvas.height = window.innerHeight - 20;
+		canvas.height = window.innerHeight / 2;
 		infoCanv.width = canvas.width;
 		infoCanv.height = canvas.height;
 		objCanv.width = canvas.width;
@@ -94,26 +117,27 @@ function init() {
 		ctx.clearRect(0, 0, canvas.width / 2, canvas.height / 2);
 		objCtx.clearRect(0, 0, canvas.width, canvas.height);
 		infoCtx.clearRect(0, 0, canvas.width, canvas.height);
-
+		var font = 0;
 		var y = canvas.height / 2;
 		var x = canvas.width / 3;
-		var waterTurbine = new machine(x * 0.6, y * 0.4, 0, '水轮机', wr, y / 2, y / 2);
-		var dynamo = new machine(x * 1.5, y * 0.4, 0, '发电机', dynamoInfo, y / 2, y / 2);
-		var cabinet = new machine(x * 2.25, y * 0.4 - x / 4.4, 1, '控制柜', undefined, x / 2, x / 2.2);
+		var waterTurbine = new machine(x * 0.6, y + font, 0, '水轮机', wr, y, y);
+		var dynamo = new machine(x * 1.5, y + font, 0, '发电机', dynamoInfo, y, y);
+		var cabinet = new machine(x * 2.25, y - x / 5 + font, 1, '控制柜', undefined, x / 2, x / 2.2);
 
 		//		machine.setMachis([waterTurbine, dynamo]);
 		//		machine.initInfo(canvas, ctx, infoCtx, objCanv, infoCanv);
 
 		objCtx.fillStyle = '#d4e3e5';
 		objCtx.fillRect(0, 0, infoCanv.width, infoCanv.height);
-		drawTable(ctx, objCtx, objCanv, wrMain, 3, y * 0.6, x * 0.6 - y / 4);
-		drawTable(ctx, objCtx, objCanv, dynamoMain, x * 0.9, y * 0.6, x * 0.6 - y / 4);
-		drawTable(ctx, objCtx, objCanv, cabinetMain, x * 2.25 - (x * 0.6 - y / 4) - 5, y * 0.6, x * 0.6 - y / 4);
 		machine.showMachine(objCtx, waterTurbine);
 		machine.showMachine(objCtx, dynamo);
 		machine.showMachine(objCtx, cabinet);
 		machine.lineMachine(objCtx, waterTurbine, dynamo);
 		machine.lineMachine(objCtx, cabinet, dynamo);
+
+		drawTable(ctx, objCtx, objCanv, wrMain, 3, y * 0.6 + font, x * 0.6 - y);
+		drawTable(ctx, objCtx, objCanv, dynamoMain, x * 0.9 - 10, y * 0.6 + font, x * 0.6 - y / 2);
+		drawTable(ctx, objCtx, objCanv, cabinetMain, x * 2.25 - (x * 0.6 - y / 2) - 5, y * 0.6 + font, x * 0.6 - y / 2);
 		ctx.drawImage(objCanv, 0, 0);
 	}
 }
@@ -133,41 +157,92 @@ machine.showMachine = function(objectCtx, machi) {
 	objectCtx.font = '40px 宋体';
 	objectCtx.textAlign = "center";
 	if(machi.type == 0) {
+		if(machi.name == '水轮机') {
+			objectCtx.beginPath();
+			objectCtx.moveTo(machi.x, machi.y + machi.width / 2);
+			objectCtx.quadraticCurveTo(machi.x - machi.width * 0.7, machi.y + machi.width * 0.4, machi.x - machi.width, machi.y - machi.width / 2);
+			objectCtx.lineTo(machi.x - machi.width * 0.7, machi.y - machi.width / 2)
+			objectCtx.quadraticCurveTo(machi.x - machi.width / 2, machi.y, machi.x, machi.y + machi.width / 2);
+			objectCtx.fillStyle = '#ffffff';
+			objectCtx.strokeStyle = '#000000';
+			objectCtx.fill();
+			objectCtx.stroke();
 
-		objectCtx.beginPath();
-		objectCtx.moveTo(machi.x, machi.y + machi.width / 2);
-		objectCtx.quadraticCurveTo(machi.x - machi.width * 0.7, machi.y + machi.width * 0.4, machi.x - machi.width, machi.y - machi.width / 2);
-		objectCtx.lineTo(machi.x - machi.width * 0.7, machi.y - machi.width / 2)
-		objectCtx.quadraticCurveTo(machi.x - machi.width / 2, machi.y, machi.x, machi.y + machi.width / 2);
-		objectCtx.fillStyle = '#ffffff';
-		objectCtx.strokeStyle = '#000000';
-		objectCtx.fill();
-		objectCtx.stroke();
+			objectCtx.beginPath();
+			objectCtx.arc(machi.x, machi.y, machi.width / 2, 0, 2 * Math.PI);
+			objectCtx.fillStyle = '#ffffff';
+			objectCtx.strokeStyle = '#000000';
+			objectCtx.fill();
+			objectCtx.stroke();
 
-		objectCtx.beginPath();
-		objectCtx.arc(machi.x, machi.y, machi.width / 2, 0, 2 * Math.PI);
-		objectCtx.fillStyle = '#ffffff';
-		objectCtx.strokeStyle = '#000000';
-		objectCtx.fill();
-		objectCtx.stroke();
+			objectCtx.beginPath();
+			objectCtx.moveTo(machi.x, machi.y);
+			objectCtx.quadraticCurveTo(machi.x - machi.width * 0.1, machi.y - machi.width / 4, machi.x, machi.y - machi.width / 2);
+			objectCtx.closePath();
+			objectCtx.moveTo(machi.x, machi.y);
+			objectCtx.quadraticCurveTo(machi.x - machi.width / 4, machi.y + machi.width * 0.1, machi.x - machi.width / 2, machi.y);
+			objectCtx.closePath();
+			objectCtx.moveTo(machi.x, machi.y);
+			objectCtx.quadraticCurveTo(machi.x + machi.width * 0.1, machi.y + machi.width / 4, machi.x, machi.y + machi.width / 2);
+			objectCtx.closePath();
+			objectCtx.moveTo(machi.x, machi.y);
+			objectCtx.quadraticCurveTo(machi.x + machi.width / 4, machi.y - machi.width * 0.1, machi.x + machi.width / 2, machi.y);
+			objectCtx.closePath();
+			objectCtx.strokeStyle = '#000000';
+			objectCtx.stroke();
+		} else {
+			objectCtx.beginPath();
+			objectCtx.moveTo(machi.x, machi.y);
+			objectCtx.lineTo(machi.x - machi.width / 2 + 10, machi.y + machi.width / 2 + 20);
+			objectCtx.lineTo(machi.x + machi.width / 2 - 10, machi.y + machi.width / 2 + 20);
+			objectCtx.closePath();
+			objectCtx.fillStyle = '#ffffff';
+			objectCtx.strokeStyle = '#000000';
+			objectCtx.fill();
+			objectCtx.stroke();
 
-		objectCtx.beginPath();
-		objectCtx.moveTo(machi.x, machi.y);
-		objectCtx.quadraticCurveTo(machi.x - machi.width * 0.1, machi.y - machi.width / 4, machi.x, machi.y - machi.width / 2);
-		objectCtx.closePath();
-		objectCtx.moveTo(machi.x, machi.y);
-		objectCtx.quadraticCurveTo(machi.x - machi.width / 4, machi.y + machi.width * 0.1, machi.x - machi.width / 2, machi.y);
-		objectCtx.closePath();
-		objectCtx.strokeStyle = '#000000';
-		objectCtx.stroke();
+			objectCtx.beginPath();
+			objectCtx.arc(machi.x, machi.y, machi.width / 2, 0, 2 * Math.PI);
+			objectCtx.fillStyle = '#ffffff';
+			objectCtx.strokeStyle = '#000000';
+			objectCtx.fill();
+			objectCtx.stroke();
+
+			objectCtx.beginPath();
+			objectCtx.arc(machi.x, machi.y, 4, 0, 2 * Math.PI);
+			objectCtx.strokeStyle = '#000000';
+			objectCtx.stroke();
+
+			objectCtx.beginPath();
+			objectCtx.arc(machi.x, machi.y, machi.width / 2 - 20, 0, 2 * Math.PI);
+			objectCtx.strokeStyle = '#000000';
+			objectCtx.stroke();
+		}
 
 		objectCtx.fillStyle = '#ff0000';
 		objectCtx.fillText(machi.name, machi.x, machi.y - machi.height / 2 - 8, machi.width / 2);
 	} else if(machi.type == 1) {
 		objectCtx.beginPath();
+		objectCtx.fillStyle = '#ffffff';
+		objectCtx.fillRect(machi.x, machi.y, machi.width, machi.height);
 		objectCtx.strokeStyle = '#000000';
 		objectCtx.strokeRect(machi.x, machi.y, machi.width, machi.height);
-
+		var sa = 3;
+		var w = 20;
+		var h = 20;
+		for(var i = 0; i < sa; i++) {
+			objectCtx.strokeStyle = '#000000';
+			objectCtx.strokeRect(machi.x + machi.width / sa / 2 + machi.width / sa * i - 10, machi.y + 10, w, h);
+		}
+		var ba = 4;
+		var r = 10;
+		for(var j = 1; j < 5; j++)
+			for(i = 0; i < ba; i++) {
+				objectCtx.beginPath();
+				objectCtx.strokeStyle = '#000000';
+				objectCtx.arc(machi.x + machi.width / sa / 2 + machi.width / sa * (sa - 1) / (ba - 1) * i, machi.y + 10 + h + (30 + r / 2) * j, r, 0, 2 * Math.PI);
+				objectCtx.stroke();
+			}
 		objectCtx.fillStyle = '#ff0000';
 		objectCtx.fillText(machi.name, machi.x + machi.width / 2, machi.y - 8, machi.width / 2);
 	}
@@ -200,31 +275,35 @@ function  getLocation(x,  y, canvas)  {              
 	};          
 }  
 function drawTable(mainCtx, ctx, infoCanv, info, x, y, width) {
-
 	var th = ['参数名', '参数值'];
 	var keys = Object.keys(info);
 	var hAmount = (keys.length);
 	var ow = width / th.length;
 	var oh = machine._infoMachi.oh;
 	var height = oh * hAmount;
+
+	ctx.beginPath();
+	ctx.fillStyle = '#d4e3e5';
+	ctx.fillRect(x, y, width, height);
+
 	ctx.strokeStyle = '#000000';
 	ctx.fillStyle = '#000000';
 	ctx.font = machine._infoMachi.font;
 	ctx.textAlign = "center";
 
-	for(var s = 0; s <= th.length; s++) {
-		ctx.beginPath();
-		ctx.moveTo(x + ow * s, y);
-		ctx.lineTo(x + ow * s, y + height);
-		ctx.stroke();
-	}
-
-	for(var h = 0; h <= hAmount; h++) {
-		ctx.beginPath();
-		ctx.moveTo(x, y + oh * h);
-		ctx.lineTo(x + width, y + oh * h);
-		ctx.stroke();
-	}
+	//	for(var s = 0; s <= th.length; s++) {
+	//		ctx.beginPath();
+	//		ctx.moveTo(x + ow * s, y);
+	//		ctx.lineTo(x + ow * s, y + height);
+	//		ctx.stroke();
+	//	}
+	//
+	//	for(var h = 0; h <= hAmount; h++) {
+	//		ctx.beginPath();
+	//		ctx.moveTo(x, y + oh * h);
+	//		ctx.lineTo(x + width, y + oh * h);
+	//		ctx.stroke();
+	//	}
 
 	for(h = 1; h <= hAmount; h++) {
 		var hy = y + oh * h - 3;

@@ -29,7 +29,13 @@ var option = {
 
 	}],
 	tooltip: {
-		formatter: "{a} <br/>{c} {b}"
+		trigger: 'axis',
+		axisPointer: {
+			type: 'cross',
+			label: {
+				backgroundColor: '#283b56'
+			}
+		}
 	},
 	toolbox: {
 		show: true,
@@ -45,13 +51,16 @@ var option = {
 	},
 	xAxis: {
 		type: 'category',
-		boundaryGap: false,
+		//		boundaryGap: false,
 		data: ['1', '2', '3']
 	},
-	yAxis: {
+	yAxis: [{
 		type: 'value',
 		name: '降雨量/mm',
-	},
+	}, {
+		type: 'value',
+		name: '发电量/kW.h',
+	}],
 	legend: {
 		data: [{
 			name: '三天',
@@ -115,18 +124,25 @@ var option = {
 				}
 			}
 		}, {
-			type: 'line',
+			type: 'bar',
 			name: '今年水位',
+			itemStyle: {
+				normal: {
+					color: 'rgba(14,125,218,0.6)'
+				}
+			},
 			data: pcpnData1.slice(0, 3)
 		},
 		{
 			type: 'line',
 			name: '同水位最大发电量',
+			yAxisIndex: 1,
 			data: pcpnData2.slice(3, 6)
 		},
 		{
 			type: 'line',
 			name: '同水位最小发电量',
+			yAxisIndex: 1,
 			data: pcpnData2.slice(0, 3)
 		},
 		{
@@ -247,14 +263,19 @@ myChart.on('legendselectchanged', function(param) {
 				data: ['1', '2', '3', '4', '5', '6', '7']
 			},
 			series: [{
-					type: 'line',
+					type: 'bar',
 					name: '今年水位',
 					data: pcpnData1.slice(0, 7)
 				},
 				{
 					type: 'line',
-					name: '去年水位',
+					name: '同水位最大发电量',
 					data: pcpnData2.slice(0, 7)
+				},
+				{
+					type: 'line',
+					name: '同水位最小发电量',
+					data: ['1', '2', '3', '4', '5', '6', '7']
 				}, {
 					name: '预测电量',
 					data: [{
@@ -276,13 +297,18 @@ myChart.on('legendselectchanged', function(param) {
 				data: ['1', '2', '3']
 			},
 			series: [{
-					type: 'line',
+					type: 'bar',
 					name: '今年水位',
 					data: pcpnData1.slice(0, 3)
 				},
 				{
 					type: 'line',
-					name: '去年水位',
+					name: '同水位最大发电量',
+					data: pcpnData2.slice(3, 6)
+				},
+				{
+					type: 'line',
+					name: '同水位最小发电量',
 					data: pcpnData2.slice(0, 3)
 				}, {
 					name: '预测电量',
