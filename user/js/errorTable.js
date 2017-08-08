@@ -1,7 +1,28 @@
 var json = [{
+	//时间
 	time: '20:54',
+	//设备名称
 	devicename: 'pwj',
-	errorname: 'deletuser'
+	//故障名称
+	errorname: 'deletuser',
+	//功率侧电压
+	powerv: '23',
+	//控制侧电压
+	operationv: '12',
+	//直流母线电压
+	mv: '22',
+	//功率侧电流
+	poweri: '9',
+	//控制侧电流
+	operationi: '8',
+	//功率侧频率
+	powerf: '7',
+	//控制侧频率
+	operationf: '7',
+	//转速
+	speed: '8',
+	//导叶开度
+	opening: '8'
 }];
 
 $('.datepicker').datepicker({
@@ -15,9 +36,9 @@ $('.datepicker').datepicker({
 document.getElementById('datetype').addEventListener('click', function(event) {
 	if(this.innerText === '月') {
 		this.innerText = '年';
-		$('.datepicker').datepicker('update','');
+		$('.datepicker').datepicker('update', '');
 		$('.datepicker').datepicker('destroy');
-		$('.datepicker').datepicker( {
+		$('.datepicker').datepicker({
 			language: 'zh-CN',
 			format: "yyyy",
 			minViewMode: 2,
@@ -25,7 +46,7 @@ document.getElementById('datetype').addEventListener('click', function(event) {
 		});
 	} else {
 		this.innerText = '月';
-		$('.datepicker').datepicker('update','');
+		$('.datepicker').datepicker('update', '');
 		$('.datepicker').datepicker('destroy');
 		$('.datepicker').datepicker({
 			language: 'zh-CN',
@@ -36,8 +57,8 @@ document.getElementById('datetype').addEventListener('click', function(event) {
 	}
 });
 
-function tline(){
-	$('th.fuckEdge')[0].style.border='1px solid #dddddd';
+function tline() {
+	$('th.fuckEdge')[0].style.border = '1px solid #dddddd';
 }
 $('#table').bootstrapTable({
 	idField: 'time',
@@ -47,7 +68,7 @@ $('#table').bootstrapTable({
 	exportOptions: {
 		fileName: '故障报表'
 	},
-	onPostHeader:tline,
+	onPostHeader: tline,
 	columns: [
 		[{
 			field: 'time',
@@ -102,7 +123,7 @@ $('#table').bootstrapTable({
 			field: 'powerv',
 			title: '功率侧',
 			align: 'center',
-			class:'fuckEdge'
+			class: 'fuckEdge'
 		}, {
 			field: 'operationv',
 			title: '控制侧',

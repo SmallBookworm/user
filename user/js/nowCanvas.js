@@ -103,7 +103,7 @@ function init() {
 	window.addEventListener("resize", resizeCanvas, false);
 
 	function resizeCanvas() {
-		document.getElementById('NO').style.height = '20px';
+		document.getElementById('NO').style.height = '40px';
 		canvas.width = window.innerWidth;
 		canvas.height = window.innerHeight / 2;
 		infoCanv.width = canvas.width;
