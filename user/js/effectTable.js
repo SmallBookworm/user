@@ -1,7 +1,28 @@
 var json = [{
 	time: '20:54',
-	devicename: 'pwj',
-	errorname: 'deletuser'
+	//有功功率
+	activep: '0',
+	//无功功率
+	reactivep: '89',
+	//功率因数
+	powerfactor: '23',
+	//电压
+	voltage: '21',
+	//电流
+	current: '43',
+	//频率
+	frequence: '12',
+	//转速
+	speed: '21',
+	//导叶开度
+	opening: '45',
+	//流量
+	flow: '12',
+	//水头高度
+	whheight: '12',
+	//耗水量
+	waterconsumption: '46'
+
 }];
 
 $('.datepicker').datepicker({
@@ -14,8 +35,8 @@ $('.datepicker').datepicker({
 });
 dateType(document.getElementById('datetype'));
 
-function tLine(){
-	$('th.fuckEdge')[0].style.border='1px solid #dddddd';
+function tLine() {
+	$('th.fuckEdge')[0].style.border = '1px solid #dddddd';
 }
 $('#table').bootstrapTable({
 	idField: 'time',
@@ -25,7 +46,7 @@ $('#table').bootstrapTable({
 	exportOptions: {
 		fileName: '效果评估表'
 	},
-	onPostHeader:tLine,
+	onPostHeader: tLine,
 	columns: [
 		[{
 			field: 'time',
@@ -98,7 +119,7 @@ $('#table').bootstrapTable({
 			field: 'activep',
 			title: '有功',
 			align: 'center',
-			class:'fuckEdge'
+			class: 'fuckEdge'
 		}, {
 			field: 'reactivep',
 			title: '无功',

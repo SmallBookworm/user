@@ -4,9 +4,11 @@
 var main = document.getElementById('main');
 // 基于准备好的dom，初始化echarts实例
 var myChart = echarts.init(document.getElementById('main'));
-//降雨量
-var pcpnData1 = [22, 10, 12, 42, 12, 25, 35];
-var pcpnData2 = [12, 10, 11, 22, 11, 15, 25];
+
+var wlData = [];
+var buData = [];
+var bmData = [];
+var bdData = [];
 // 指定图表的配置项和数据
 var option = {
 	backgroundColor: 'rgba(255,255,255,0)',
@@ -131,19 +133,24 @@ var option = {
 					color: 'rgba(14,125,218,0.6)'
 				}
 			},
-			data: pcpnData1.slice(0, 3)
+			data: wlData
 		},
 		{
 			type: 'line',
-			name: '同水位最大发电量',
+			name: '发电量上轨',
 			yAxisIndex: 1,
-			data: pcpnData2.slice(3, 6)
+			data: buData
+		}, {
+			type: 'line',
+			name: '发电量中轨',
+			yAxisIndex: 1,
+			data: bmData
 		},
 		{
 			type: 'line',
-			name: '同水位最小发电量',
+			name: '发电量下轨',
 			yAxisIndex: 1,
-			data: pcpnData2.slice(0, 3)
+			data: bdData
 		},
 		{
 			name: '预测电量',
@@ -254,10 +261,59 @@ document.addEventListener('DOMContentLoaded', initMain);
 window.onresize = function() {
 	initMain();
 };
+//布林线
+function MA(data) {
+	var num = 0;
+	for(var i in data) {
+		num += data[i];
+	}
+	return num / data.length;
+}
 
+function MD(data) {
+	var ma = MA(data);
+	var cma = 0;
+	for(var i in data) {
+		cma += Math.pow(data[i] - ma, 2);
+	}
+	return Math.sqrt(cma / data.length);
+}
+
+function Bollinger(data, k) {
+	var ma = MA(data);
+	var md = MD(data);
+	buData.push((ma + k * md).toFixed(2));
+	bmData.push((ma).toFixed(2));
+	bdData.push((ma - k * md).toFixed(2));
+}
+var data3 = [
+	[1, 3, 4],
+	[34, 3, 2],
+	[56, 90, 34, 34]
+];
+for(var i in data3) {
+	Bollinger(data3[i], 2)
+}
+wlData.push(2, 3, 4);
 myChart.setOption(option, true);
 myChart.on('legendselectchanged', function(param) {
-	if(param.name == '七天')
+	if(param.name == '七天') {
+		wlData = [12, 13, 14, 15, 16, 17, 11];
+		var data7 = [
+			[1, 3, 4],
+			[34, 3, 2],
+			[56, 90, 34, 34],
+			[34, 3, 2],
+			[34, 13, 12],
+			[34, 31, 21],
+			[34, 3, 2]
+		];
+		buData = [];
+		bmData = [];
+		bdData = [];
+		for(var i in data7) {
+			Bollinger(data7[i], 2)
+		}
 		myChart.setOption({
 			xAxis: {
 				data: ['1', '2', '3', '4', '5', '6', '7']
@@ -265,17 +321,24 @@ myChart.on('legendselectchanged', function(param) {
 			series: [{
 					type: 'bar',
 					name: '今年水位',
-					data: pcpnData1.slice(0, 7)
+					data: wlData
 				},
 				{
 					type: 'line',
-					name: '同水位最大发电量',
-					data: pcpnData2.slice(0, 7)
+					name: '发电量上轨',
+					yAxisIndex: 1,
+					data: buData
+				}, {
+					type: 'line',
+					name: '发电量中轨',
+					yAxisIndex: 1,
+					data: bmData
 				},
 				{
 					type: 'line',
-					name: '同水位最小发电量',
-					data: ['1', '2', '3', '4', '5', '6', '7']
+					name: '发电量下轨',
+					yAxisIndex: 1,
+					data: bdData
 				}, {
 					name: '预测电量',
 					data: [{
@@ -291,7 +354,14 @@ myChart.on('legendselectchanged', function(param) {
 				}
 			]
 		});
-	else
+	} else {
+		wlData = [2, 3, 4];
+		buData = [];
+		bmData = [];
+		bdData = [];
+		for(var i in data3) {
+			Bollinger(data3[i], 2)
+		}
 		myChart.setOption({
 			xAxis: {
 				data: ['1', '2', '3']
@@ -299,17 +369,24 @@ myChart.on('legendselectchanged', function(param) {
 			series: [{
 					type: 'bar',
 					name: '今年水位',
-					data: pcpnData1.slice(0, 3)
+					data: wlData
 				},
 				{
 					type: 'line',
-					name: '同水位最大发电量',
-					data: pcpnData2.slice(3, 6)
+					name: '发电量上轨',
+					yAxisIndex: 1,
+					data: buData
+				}, {
+					type: 'line',
+					name: '发电量中轨',
+					yAxisIndex: 1,
+					data: bmData
 				},
 				{
 					type: 'line',
-					name: '同水位最小发电量',
-					data: pcpnData2.slice(0, 3)
+					name: '发电量下轨',
+					yAxisIndex: 1,
+					data: bdData
 				}, {
 					name: '预测电量',
 					data: [{
@@ -325,4 +402,6 @@ myChart.on('legendselectchanged', function(param) {
 				}
 			]
 		});
+	}
+
 });

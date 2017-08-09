@@ -1,7 +1,17 @@
 var json = [{
 	time: '20:54',
-	devicename: 'pwj',
-	errorname: 'deletuser'
+	//有功电量
+	active: '12',
+	//无功电量
+	reactive: '23',
+	//平均功率因数
+	apowerfactor: '67',
+	//流量
+	flow: '89',
+	//水头高度
+	whheight: '90',
+	//耗水量
+	waterconsumption: '89',
 }];
 
 $('.datepicker').datepicker({
@@ -14,8 +24,8 @@ $('.datepicker').datepicker({
 });
 dateType(document.getElementById('datetype'));
 
-function tLine(){
-	$('th.fuckEdge')[0].style.border='1px solid #dddddd';
+function tLine() {
+	$('th.fuckEdge')[0].style.border = '1px solid #dddddd';
 }
 $('#table').bootstrapTable({
 	idField: 'time',
@@ -25,7 +35,7 @@ $('#table').bootstrapTable({
 	exportOptions: {
 		fileName: '发电量报表'
 	},
-	onPostHeader:tLine,
+	onPostHeader: tLine,
 	columns: [
 		[{
 			field: 'time',
@@ -68,7 +78,7 @@ $('#table').bootstrapTable({
 			field: 'active',
 			title: '有功',
 			align: 'center',
-			class:'fuckEdge'
+			class: 'fuckEdge'
 		}, {
 			field: 'reactive',
 			title: '无功',
