@@ -10,21 +10,29 @@
 			.input-group.date {
 				width: 22rem;
 			}
-			.input-group-addon#datetype:hover{
+			
+			.input-group-addon#datetype:hover {
 				cursor: pointer;
 			}
-
+			
+			#NO {
+				margin-bottom: 20px;
+			}
 		</style>
 		<title>月,年度故障报表</title>
 	</head>
 
 	<body>
+		<select id="NO">
+			<option>水电站1</option>
+			<option>水电站2</option>
+		</select>
 		<div class="center container-fluid">
-				<div class="input-group date">
-					<span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
-					<input type="text" class="form-control datepicker">
-					<span class="input-group-addon" id="datetype">月</span>
-				</div>
+			<div class="input-group date">
+				<span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+				<input type="text" class="form-control datepicker">
+				<span class="input-group-addon" id="datetype">月</span>
+			</div>
 			<table id="table" data-toolbar="#toolbar" data-striped="true" data-search="true" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-show-export="true" data-detail-view="false" data-show-pagination-switch="true" data-pagination="true" data-show-footer="false" data-side-pagination="client" data-response-handler="responseHandler"></table>
 		</div>
 	</body>

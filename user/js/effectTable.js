@@ -55,6 +55,12 @@ $('#table').bootstrapTable({
 			colspan: 1,
 			rowspan: 2
 		}, {
+			field: 'deviceposition',
+			title: '设备位置',
+			align: 'center',
+			colspan: 2,
+			rowspan: 1
+		}, {
 			field: 'power',
 			title: '功率',
 			align: 'center',
@@ -116,10 +122,19 @@ $('#table').bootstrapTable({
 			rowspan: 2
 		}],
 		[{
+			field: 'station',
+			title: '水电站',
+			align: 'center',
+			class: 'fuckEdge'
+		}, {
+			field: 'device',
+			title: '设备',
+			align: 'center',
+
+		}, {
 			field: 'activep',
 			title: '有功',
 			align: 'center',
-			class: 'fuckEdge'
 		}, {
 			field: 'reactivep',
 			title: '无功',

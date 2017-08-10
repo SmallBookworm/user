@@ -2,7 +2,7 @@ var json = [{
 	//时间
 	time: '20:54',
 	//设备名称
-	devicename: 'pwj',
+	device: 'pwj',
 	//故障名称
 	errorname: 'deletuser',
 	//功率侧电压
@@ -77,11 +77,11 @@ $('#table').bootstrapTable({
 			colspan: 1,
 			rowspan: 2
 		}, {
-			field: 'devicename',
-			title: '设备名称',
+			field: 'errorposition',
+			title: '故障位置',
 			align: 'center',
-			colspan: 1,
-			rowspan: 2
+			colspan: 2,
+			rowspan: 1
 		}, {
 			field: 'errorname',
 			title: '故障名称',
@@ -120,10 +120,20 @@ $('#table').bootstrapTable({
 			rowspan: 2
 		}],
 		[{
+			field: 'station',
+			title: '水电站',
+			align: 'center',
+			class: 'fuckEdge'
+		}, {
+			field: 'device',
+			title: '设备',
+			align: 'center',
+
+		}, {
 			field: 'powerv',
 			title: '功率侧',
 			align: 'center',
-			class: 'fuckEdge'
+
 		}, {
 			field: 'operationv',
 			title: '控制侧',
