@@ -81,6 +81,95 @@ function createTable(name, json) {
 	}
 }
 
+var matching = {
+	顶盖水压: 'toppressure',
+	顶盖水位: 'toplevel',
+	锁定位置: 'lockposition',
+	轮叶开度: 'opening',
+	调速器油压: 'governorpressure',
+	涡壳流量: 'Voluteflow',
+	水轮机转数: 'Turbinerevolutions',
+	水轮机振动: 'Turbinevibration',
+	'水导（水轮机导轴承）瓦温': 'Hydraulicconductivity',
+	导叶开度: 'guideopening',
+	导叶后压力: 'Afterguide',
+	大轴摆度: 'Largeshaft',
+	主阀油压: 'mainhydraulic',
+	'主配（主配压阀）行程': 'Maindistri',
+	主配拒动位置: 'Maindistribution',
+	'风闸（水轮发电机制动器）位置': 'Windbrake',
+	转子温度: 'Temperaturerotor',
+	电网频率: 'gridfrequency',
+	电网电压: 'gridvoltage',
+	母线电压: 'Busvoltage',
+	机组频率: 'Tunitfrequency',
+	机组转速: 'unitspeed',
+	机组功率: 'unitpower',
+	有功功率: 'Activepower',
+	无功功率: 'Reactivepower',
+	定子线圈与铁芯温度: 'Statorcoil',
+	发电机振动: 'Generatorvibration',
+	功率因数: 'powerfactor',
+	功率侧电流: 'Powersidecurrent',
+	功率侧电压: 'Powerside',
+	冷却水压: 'Coolingwater',
+	进水口闸门状态: 'Inletgate',
+	线路负荷: 'Lineload',
+	线路电流: 'Linecurrent',
+	泄洪闸门状态: 'Floodgate',
+	效率: 'efficiencyof',
+	'控制母线（控制、检测、信号等）电压': 'Controlvoltages',
+	控制侧电流: 'Controlcurrent',
+	控制侧电压: 'Controlvoltage',
+	总流量: 'traffic',
+	工作水头: 'Workinghead',
+	'合闸母线、合闸线圈电压': 'Closingbus',
+	厂用母线电压: 'USESvoltage',
+	主变低压侧电压: 'Mainvariable',
+	下游水位: 'downstream',
+	上游水位: 'upstreamwater'
+
+}
+
+function load() {
+	$.ajax({
+		type: "POST",
+		url: "http://172.20.241.51:8080/Hydropower/eqmodelController/gettoeqmodel.do",
+		data: {
+			session: '',
+			ID: 1
+		},
+		dataType: "json",
+		success: function(da) {
+			var data = da.data;
+			console.log(data)
+			for(var i in wrMain) {
+				wrMain[i] = [data[1][matching[i]]];
+			}
+			for(i in wr) {
+				wr[i] = [data[1][matching[i]]];
+			}
+			for(i in dynamoMain) {
+				dynamoMain[i] = [data[2][matching[i]]];
+			}
+			for(i in dynamoInfo) {
+				dynamoInfo[i] = [data[2][matching[i]]];
+			}
+			for(i in cabinetMain) {
+				cabinetMain[i] = [data[3][matching[i]]];
+			}
+			for(i in otherInfo) {
+				otherInfo[i] = [data[3][matching[i]]];
+			}
+			init();
+		},
+		error: function(xhr) {
+			alert("错误提示： " + xhr.status + " " + xhr.statusText);
+			console.log(xhr)
+		}
+	});
+}
+
 function init() {
 	createTable('水轮机', wr);
 	createTable('发电机', dynamoInfo);

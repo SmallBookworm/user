@@ -1,45 +1,35 @@
-var json = [{
-	date: '2017-7-20',
-	starttime: '10:54',
-	username: 'pwj',
-	endtime: '23:54'
-}, {
-	date: '2017-7-29',
-	starttime: '7:54',
-	username: 'pwj',
-	endtime: '22:54'
-}, {
-	date: '2017-7-12',
-	starttime: '10:54',
-	username: 'pwj',
-	endtime: '20:54'
-}, {
-	date: '2017-6-20',
-	starttime: '8:54',
-	username: 'pwj',
-	endtime: '12:54'
-}, {
-	date: '2017-5-20',
-	starttime: '6:54',
-	username: 'pwj',
-	endtime: '10:54'
-}, {
-	date: '2017-1-20',
-	starttime: '7:54',
-	username: 'pwj',
-	endtime: '10:54'
-}, {
-	date: '2017-11-20',
-	starttime: '4:32',
-	username: 'pwj',
-	endtime: '10:54'
-}];
+var json = [];
+var loadFlag = false;
+(new dateRange($('#start'), $('#end'), function() {
+	if(!loadFlag) {
+		loadFlag = true;
+		document.getElementById('end').disabled = true;
+		document.getElementById('start').disabled = true;
+		$.ajax({
+			type: "POST",
+			url: "http://172.20.241.51:8080/Hydropower/logInfoController/getloginfo.do",
+			data: {
+				session: '',
+				ID: 1
+			},
+			dataType: "json",
+			success: function(data) {
+				json = data.data;
+				$('#table').bootstrapTable('load', json);
+				loadFlag = false;
+				document.getElementById('end').disabled = false;
+				document.getElementById('start').disabled = false;
+			},
+			error: function(xhr) {
+				alert("错误提示： " + xhr.status + " " + xhr.statusText);
+				loadFlag = false;
+				document.getElementById('end').disabled = false;
+				document.getElementById('start').disabled = false;
+			}
 
-(new dateRange($('#start'), $('#end'), function(start, end) {
-	console.log(start, end)
-	$('#table').bootstrapTable('load', json)
+		});
+	}
 })).initRange();
-
 $('#table').bootstrapTable({
 	idField: 'date',
 	pageSize: 5,
@@ -49,21 +39,25 @@ $('#table').bootstrapTable({
 		fileName: '运行日志'
 	},
 	columns: [{
-		field: 'date',
-		title: '日期',
+		field: 'ldate',
+		title: '时间',
 		align: 'center',
 		sortable: true
 	}, {
-		field: 'username',
+		field: 'lname',
 		title: '登录名',
 		align: 'center',
 	}, {
-		field: 'starttime',
-		title: '开机时间',
+		field: 'ltype',
+		title: '操作',
 		align: 'center',
 	}, {
-		field: 'endtime',
-		title: '关机时间',
+		field: 'lstat',
+		title: '级别',
+		align: 'center',
+	}, {
+		field: 'logname',
+		title: '集团',
 		align: 'center',
 	}],
 	data: {}

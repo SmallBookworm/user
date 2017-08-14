@@ -1,43 +1,40 @@
-var json = [{
-	date: '2017-7-20',
-	time: '20:54',
-	username: 'pwj',
-	operation: 'deletuser'
-}, {
-	date: '2017-7-29',
-	time: '20:54',
-	username: 'pwj',
-	operation: 'deletuser'
-}, {
-	date: '2017-7-12',
-	time: '10:54',
-	username: 'pwj',
-	operation: 'deletuser'
-}, {
-	date: '2017-6-20',
-	time: '22:54',
-	username: 'pwj',
-	operation: 'deletuser'
-}, {
-	date: '2017-5-20',
-	time: '23:54',
-	username: 'pwj',
-	operation: 'deletuser'
-}, {
-	date: '2017-1-20',
-	time: '23:54',
-	username: 'pwj',
-	operation: 'deletuser'
-}, {
-	date: '2017-11-20',
-	time: '23:54',
-	username: 'pwj',
-	operation: 'deletuser'
-}];
-
-
+var json = [];
+var loadFlag = false;
 (new dateRange($('#start'), $('#end'), function() {
-	$('#table').bootstrapTable('load', json)
+	if(!loadFlag) {
+		loadFlag = true;
+		document.getElementById('end').disabled = true;
+		document.getElementById('start').disabled = true;
+		$.bootstrapLoading.start({
+			loadingTips: "正在处理数据，请稍候..."
+		});
+
+		$.ajax({
+			type: "POST",
+			url: "http://172.20.241.51:8080/Hydropower/logInfoController/getloguser.do",
+			data: {
+				session: '',
+				ID: 1
+			},
+			dataType: "json",
+			success: function(data) {
+				json = data.data;
+				$('#table').bootstrapTable('load', json);
+				//$.bootstrapLoading.end();
+				loadFlag = false;
+				document.getElementById('end').disabled = false;
+				document.getElementById('start').disabled = false;
+			},
+			error: function(xhr) {
+				alert("错误提示： " + xhr.status + " " + xhr.statusText);
+				//$.bootstrapLoading.end();
+				loadFlag = false;
+				document.getElementById('end').disabled = false;
+				document.getElementById('start').disabled = false;
+			}
+
+		});
+	}
 })).initRange();
 
 $('#table').bootstrapTable({
@@ -49,21 +46,25 @@ $('#table').bootstrapTable({
 		fileName: '操作记录'
 	},
 	columns: [{
-		field: 'date',
-		title: '日期',
+		field: 'ldate',
+		title: '时间',
 		align: 'center',
 		sortable: true
 	}, {
-		field: 'time',
-		title: '时间',
-		align: 'center',
-	}, {
-		field: 'username',
+		field: 'lname',
 		title: '登录名',
 		align: 'center',
 	}, {
-		field: 'operation',
+		field: 'ltype',
 		title: '操作',
+		align: 'center',
+	}, {
+		field: 'lstat',
+		title: '级别',
+		align: 'center',
+	}, {
+		field: 'logname',
+		title: '集团',
 		align: 'center',
 	}],
 	data: {}
