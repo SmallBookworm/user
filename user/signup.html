@@ -61,8 +61,8 @@
 					<label for="sex" class="col-md-1 col-md-offset-2 ">性别：</label>
 					<div class="ucol col-md-4">
 						<select id='sex' class="form-control">
-							<option>男</option>
-							<option>女</option>
+							<option value="2">男</option>
+							<option value="1">女</option>
 						</select>
 					</div>
 				</div>
@@ -95,15 +95,15 @@
 				<div class="form-group">
 					<label for="kind" class="col-md-1 ">所属集团：</label>
 					<div class="ucol col-md-4">
-						<input type="text" id="company" class="form-control" placeholder="所属集团" required="" value="GG" disabled>
+						<input type="text" id="company" class="form-control" placeholder="所属集团" required="" value="1" disabled>
 					</div>
 					<label for="state" class="col-md-1 col-md-offset-2 ">状态：</label>
 					<div class="ucol col-md-4">
 						<label>
-         					 <input type="radio" id="state1" name="state" checked=""> 启用
+         					 <input type="radio" id="state1" name="state" checked="" value="1"> 启用
                           </label>
 						<label>
-         					 <input type="radio" id="state2" name="state"> 不启用
+         					 <input type="radio" id="state2" name="state" value="0"> 不启用
                           </label>
 					</div>
 				</div>
@@ -118,22 +118,38 @@
 		</div>
 	</body>
 	<script>
+		var zhCN = {
+			'username': '登录名',
+			'name': '姓名',
+			'club': '部门',
+			sex: '性别',
+			cellphone: '手机',
+			telephone: '电话',
+			IDcard: '身份证号',
+			password: '密码',
+			company: '所属集团',
+			state: '状态'
+		};
 		$(document).ready(function() {
 			$(".form-signup").submit(function(e) {
 				e.preventDefault();
 				$('.alert').alert('close');
-				//				$.ajax({ 
-				//					type:   'POST',
-				//					 data:  $(this).serialize(),
-				//					 url:   'xxxx',
-				//					            success:   function ()  { 
-				//						state.success();            
-				//					},
-				//					            error:   function (xhr)  {               
-				//						state.error();            
-				//					}         
-				//				});     
-				state.error('???');      
+				var form = document.getElementsByClassName('form-signup')[0];
+				var data = {};
+				for(var i in zhCN) {
+					data[i] = form[i].value;
+				} 
+				$.ajax({ 
+					type:   'POST',
+					 data: JSON.stringify(data),
+					 url:   'http://172.20.241.51:8080/Hydropower/userInfoController/adduser.do',
+					            success:   function ()  { 
+						state.success();            
+					},
+					            error:   function (xhr)  {            
+						state.error(xhr.statusText);            
+					}         
+				});       
 			});
 		});
 

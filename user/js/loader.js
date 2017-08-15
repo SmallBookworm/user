@@ -1,12 +1,3 @@
-/*******************************************
- * 
- * Plug-in:友好的页面加载效果
- * Author:sqinyang (sqinyang@sina.com)
- * Time:2015/04/20
- * Explanation:随着HTML5的流行，页面效果越来越炫，同时也需要加载大量的插件及素材，万恶的网速，特别对于挂在国外服务器的网站，一打开一堆素材缓缓加载，位置错乱不齐，故编写此方法，方便大家使用
- *
- *********************************************/
-
 jQuery.bootstrapLoading = {
 	start: function(options) {
 		var defaults = {
@@ -20,17 +11,12 @@ jQuery.bootstrapLoading = {
 			//提示边框宽度
 			borderStyle: "solid",
 			//提示边框样式
-			loadingTips: '<div class="loader - inner ball - clip - rotate - pulse "><div></div><div></div></div>',
+			loadingTips: "Loading, please wait...",
 			//提示文本
 			TipsColor: "#ffffff",
 			//提示颜色
-			delayTime: 1000,
-			//页面加载完成后，加载页面渐出速度
 			zindex: 999,
 			//loading页面层次
-			sleep: 0
-			//设置挂起,等于0时则无需挂起
-
 		}
 		var options = $.extend(defaults, options);
 
@@ -57,31 +43,27 @@ jQuery.bootstrapLoading = {
 			"top": _LoadingTop + "px"
 		});
 
-		//监听页面加载状态
-		document.onreadystatechange = PageLoaded;
-
-		//当页面加载完成后执行
-		function PageLoaded() {
-			if(document.readyState == "complete") {
-				var loadingMask = $('#loadingPage');
-
-				setTimeout(function() {
-						loadingMask.animate({
-								"opacity": 0
-							},
-							options.delayTime,
-							function() {
-								$(this).hide();
-
-							});
-
-					},
-					options.sleep);
-
-			}
-		}
 	},
-	end: function() {
-		$("#loadingPage").remove();
+	//			sleep: 0
+	//设置挂起,等于0时则无需挂起
+	//			delayTime: 1000
+	//页面加载完成后，加载页面渐出速度
+	end: function(delayTime, sleep) {
+		delayTime = delayTime || 1000;
+		sleep = sleep || 0;
+		var loadingMask = $('#loadingPage');
+
+		setTimeout(function() {
+				loadingMask.animate({
+						"opacity": 0
+					},
+					delayTime,
+					function() {
+						$(this).remove();
+
+					});
+
+			},
+			sleep);
 	}
 }

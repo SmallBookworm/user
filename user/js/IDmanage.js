@@ -103,7 +103,7 @@ var json = [{
 		username: '24234',
 		password: 'as123',
 		company: '1',
-		state: '不启用'
+		state: '1'
 	},
 	{
 		name: '王12',
@@ -115,7 +115,7 @@ var json = [{
 		username: '1234',
 		password: 'as123',
 		company: '1',
-		state: '不启用'
+		state: '0'
 	}
 ];
 
@@ -123,8 +123,6 @@ var zhCN = {
 	'username': '登录名',
 	'name': '姓名',
 	'club': '部门',
-	'state': '状态',
-	'operate': '操作',
 	sex: '性别',
 	cellphone: '手机',
 	telephone: '电话',
@@ -133,6 +131,32 @@ var zhCN = {
 	company: '所属集团',
 	state: '状态'
 };
+
+function load() {
+	$.bootstrapLoading.start({
+		borderStyle: 'none',
+		loadingTips: '<div class="loader-inner square-spin"><div></div></div>'
+	});
+	$.ajax({
+		type: "POST",
+		url: "http://172.20.241.51:8080/Hydropower/userInfoController/getuserlist.do",
+		data: {
+			session: '',
+			usid: 1,
+			orgid: 0
+		},
+		dataType: "json",
+		success: function(da) {
+			json = da.data.slice(2);
+			$('#table').bootstrapTable('load', json);
+			$.bootstrapLoading.end();
+		},
+		error: function(xhr) {
+			alert("错误提示： " + xhr.status + " " + xhr.statusText);
+			console.log(xhr)
+		}
+	});
+}
 
 function createModal(data) {
 	var form = $('#form-change')[0];
@@ -207,5 +231,5 @@ $('#table').bootstrapTable({
 		events: operateEvents,
 		formatter: operateFormatter
 	}],
-	data: json
+	data: []
 });

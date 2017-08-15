@@ -128,10 +128,13 @@ var matching = {
 	主变低压侧电压: 'Mainvariable',
 	下游水位: 'downstream',
 	上游水位: 'upstreamwater'
-
 }
 
 function load() {
+	$.bootstrapLoading.start({
+		borderStyle: 'none',
+		loadingTips: '<div class="loader-inner square-spin"><div></div></div>'
+	});
 	$.ajax({
 		type: "POST",
 		url: "http://172.20.241.51:8080/Hydropower/eqmodelController/gettoeqmodel.do",
@@ -162,6 +165,7 @@ function load() {
 				otherInfo[i] = [data[3][matching[i]]];
 			}
 			init();
+			$.bootstrapLoading.end();
 		},
 		error: function(xhr) {
 			alert("错误提示： " + xhr.status + " " + xhr.statusText);

@@ -1,35 +1,33 @@
 var json = [];
-var loadFlag = false;
-(new dateRange($('#start'), $('#end'), function() {
-	if(!loadFlag) {
-		loadFlag = true;
-		document.getElementById('end').disabled = true;
-		document.getElementById('start').disabled = true;
-		$.ajax({
-			type: "POST",
-			url: "http://172.20.241.51:8080/Hydropower/logInfoController/getloginfo.do",
-			data: {
-				session: '',
-				ID: 1
-			},
-			dataType: "json",
-			success: function(data) {
-				json = data.data;
-				$('#table').bootstrapTable('load', json);
-				loadFlag = false;
-				document.getElementById('end').disabled = false;
-				document.getElementById('start').disabled = false;
-			},
-			error: function(xhr) {
-				alert("错误提示： " + xhr.status + " " + xhr.statusText);
-				loadFlag = false;
-				document.getElementById('end').disabled = false;
-				document.getElementById('start').disabled = false;
-			}
 
-		});
-	}
+(new dateRange($('#start'), $('#end'), function() {
+	$.bootstrapLoading.start({
+		borderStyle: 'none',
+		loadingTips: '<div class="loader-inner square-spin"><div></div></div>'
+	});
+
+	$.ajax({
+		type: "POST",
+		url: "http://172.20.241.51:8080/Hydropower/logInfoController/getloginfo.do",
+		data: {
+			session: '',
+			ID: 1
+		},
+		dataType: "json",
+		success: function(data) {
+			json = data.data;
+			$('#table').bootstrapTable('load', json);
+			$.bootstrapLoading.end();
+		},
+		error: function(xhr) {
+			alert("错误提示： " + xhr.status + " " + xhr.statusText);
+			$.bootstrapLoading.end();
+		}
+
+	});
+
 })).initRange();
+
 $('#table').bootstrapTable({
 	idField: 'date',
 	pageSize: 5,
