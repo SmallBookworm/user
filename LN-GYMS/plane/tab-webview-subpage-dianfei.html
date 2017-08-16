@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" href="../css/itext.css">
+		<title>电费</title>
+	</head>
+
+	<body>
+		<div class="mui-card">
+			<div class="mui-card-content">
+				<div class="mui-card-content-inner">
+					<div class="mui-row">
+						<div class="mui-col-sm-6 mui-col-xs-6">
+							<div>
+								<img class="itext" src="../images/save.png" />累计节约（万元）
+							</div>
+							<span class="ibt">0.0000</span>
+						</div>
+						<div class="mui-col-sm-6 mui-col-xs-6">
+							<div>
+								<img src="../images/碳减排.png" class="itext">减排CO2（吨）
+							</div>
+							<span class="ibt">0.0000</span>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<div class="mui-card">
+			<div class="mui-card-header">8月（万元）</div>
+			<div class="mui-card-content">
+				<div class="mui-card-content-inner">
+					<div id="slider" class="mui-slider">
+						<div class="mui-slider-group">
+							<div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
+								<div class="mui-row">
+									<div class="mui-col-sm-4 mui-col-xs-4">
+										<div>
+											<img class="itext" src="../images/电费.png" />总电费
+										</div>
+										<span class="ibt">0.0000</span>
+									</div>
+									<div class="mui-col-sm-4 mui-col-xs-4">
+										<div>
+											<img class="itext" src="../images/基本电费.png" />基本电费
+										</div>
+										<span class="ibt">0.0000</span>
+									</div>
+									<div class="mui-col-sm-4 mui-col-xs-4">
+										<div>
+											<img class="itext" src="../images/力调电费.png" />力调电费
+										</div>
+										<span class="ibt">0.0000</span>
+									</div>
+								</div>
+							</div>
+							<div id="item2mobile" class="mui-slider-item mui-control-content">
+								<div class="mui-row">
+									<div class="mui-col-sm-4 mui-col-xs-4">
+										<div>
+											<img class="itext" src="../images/电费.png" />总电费
+										</div>
+										<span class="ibt">0.0000</span>
+									</div>
+									<div class="mui-col-sm-4 mui-col-xs-4">
+										<div>
+											<img class="itext" src="../images/基本电费.png" />基本电费
+										</div>
+										<span class="ibt">0.0000</span>
+									</div>
+									<div class="mui-col-sm-4 mui-col-xs-4">
+										<div>
+											<img class="itext" src="../images/力调电费.png" />力调电费
+										</div>
+										<span class="ibt">0.0000</span>
+									</div>
+								</div>
+							</div>
+							<div id="item3mobile" class="mui-slider-item mui-control-content">
+								<div class="mui-row">
+									<div class="mui-col-sm-4 mui-col-xs-4">
+										<div>
+											<img class="itext" src="../images/电费.png" />总电费
+										</div>
+										<span class="ibt">0.0000</span>
+									</div>
+									<div class="mui-col-sm-4 mui-col-xs-4">
+										<div>
+											<img class="itext" src="../images/基本电费.png" />基本电费
+										</div>
+										<span class="ibt">0.0000</span>
+									</div>
+									<div class="mui-col-sm-4 mui-col-xs-4">
+										<div>
+											<img class="itext" src="../images/力调电费.png" />力调电费
+										</div>
+										<span class="ibt">0.0000</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+							<div class="mui-indicator mui-active"></div>
+							<div class="mui-indicator"></div>
+							<div class="mui-indicator"></div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="mui-card">
+			<div class="mui-card-header">本年（万元）</div>
+			<div class="mui-card-content">
+				<div class="mui-card-content-inner">
+					<div class="mui-row">
+						<div class="mui-col-sm-6 mui-col-xs-6">
+							<div>
+								<img class="itext" src="../images/累计.png" />实时累计
+							</div>
+							<span class="ibt">45.12</span>
+						</div>
+						<div class="mui-col-sm-6 mui-col-xs-6">
+							<div>
+								<img class="itext" src="../images/同比.png" />同比
+							</div>
+							<span class="ibt">--%</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="mui-card">
+			<div class="mui-card-header" id="mainHeader">历史电费趋势（万元）</div>
+			<div class="mui-card-content">
+				<div class="mui-card-content-inner">
+					<div id="main" style="width: 600px;height:600px;">
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="../js/mui.min.js"></script>
+	<script src="../js/echarts.min.js"></script>
+	<script src="../js/powerRate.js"></script>
+
+</html>

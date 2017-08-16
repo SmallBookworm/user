@@ -1,0 +1,18 @@
+img.itext {
+	height: 32px !important;
+	width: 32px !important;
+	vertical-align: middle;
+}
+
+.ibt {
+	margin-left: 40px;
+}
+.mui-card{
+	margin: 5px ;
+}
+.mui-card-content-inner{
+	padding: 5px;
+}
+.mui-card-header{
+	padding: 5px 15px;
+}

@@ -1,0 +1,69 @@
+{
+  "login.html": {
+    "resources": [
+      "planejs/mui.enterfocus.js",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "css/style.css",
+      "planejs/angular.min.js",
+      "planejs/jquery.js",
+      "planejs/app.js",
+      "fonts/mui.ttf",
+      "plane0/choice.html",
+      "plane/tab-webview-main.html"
+    ],
+    "refer": [
+      "plane0/choice.html",
+      "plane/tab-webview-main.html"
+    ]
+  },
+  "plane0/choice.html": {
+    "resources": [
+      "css/mui.min.css",
+      "planejs/angular.min.js",
+      "planejs/jquery.js"
+    ],
+    "refer": []
+  },
+  "plane/tab-webview-main.html": {
+    "resources": [
+      "plane/tab-webview-subpage-setting.html",
+      "css/mui.min.css",
+      "login.html",
+      "plane/tab-webview-subpage-dianfei.html",
+      "plane0/choice.html"
+    ],
+    "refer": [
+      "plane/tab-webview-subpage-setting.html",
+      "plane/tab-webview-subpage-gaojing.html",
+      "plane/tab-webview-subpage-jiance.html",
+      "plane/tab-webview-subpage-dianfei.html",
+      "login.html",
+      "plane0/choice.html"
+    ]
+  },
+  "plane/tab-webview-subpage-gaojing.html": {
+    "resources": [
+      "images/baojing.jpg",
+      "images/temp.png",
+      "images/zaixianjiankong.png",
+      "images/warn.png",
+      "plane/gaofuhe.html"
+    ],
+    "refer": [
+      "plane/gaofuhe.html"
+    ]
+  },
+  "plane/tab-webview-subpage-dianfei.html": {
+    "resources": [
+      "css/mui.min.css"
+    ],
+    "refer": []
+  },
+  "plane/gaofuhe.html": {
+    "resources": [
+      "css/mui.min.css"
+    ],
+    "refer": []
+  }
+}
