@@ -5,11 +5,11 @@ option = {
 			type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
 		}
 	},
-	 grid: {
-        top: '10%',
-        bottom: '0%',
-        containLabel: true
-    },
+	grid: {
+		top: '10%',
+		bottom: '0%',
+		containLabel: true
+	},
 	legend: {
 		data: ['力调电费', '基本电费']
 	},
@@ -26,6 +26,11 @@ option = {
 			name: '基本电费',
 			type: 'bar',
 			stack: '总量',
+			 itemStyle: {                                      
+				normal: {
+					color: '#1296db'
+				}                                  
+			},
 			label: {
 				normal: {
 					show: true,
@@ -38,6 +43,11 @@ option = {
 			name: '力调电费',
 			type: 'bar',
 			stack: '总量',
+			itemStyle: {                                      
+				normal: {
+					color: '#FEBD2C'
+				}                                  
+			},
 			label: {
 				normal: {
 					show: true,

@@ -27,35 +27,22 @@
 			<h1 class="mui-title">设置</h1>
 		</header>-->
 		<div class="mui-content">
-			<div class="title">
-				这是webview模式选项卡中的第4个子页面，该页面展示一个常见的设置示例
-			</div>
 			<ul class="mui-table-view">
-				<li class="mui-table-view-cell">
+				<li class="mui-table-view-cell" id="changepassword">
 					<a class="mui-navigate-right">
-						新消息通知
-					</a>
-				</li>
-				<li class="mui-table-view-cell">
-					<a class="mui-navigate-right">
-						隐私
-					</a>
-				</li>
-				<li class="mui-table-view-cell">
-					<a class="mui-navigate-right">
-						通用
+						修改密码
 					</a>
 				</li>
 			</ul>
 			<ul class="mui-table-view" style="margin-top: 25px;">
-				<li class="mui-table-view-cell">
-					<a id="about" class="mui-navigate-right">
-						关于mui
+				<li class="mui-table-view-cell" id="about">
+					<a class="mui-navigate-right">
+						关于兆瓦
 					</a>
 				</li>
 			</ul>
 			<ul class="mui-table-view" style="margin-top: 25px;">
-				<li class="mui-table-view-cell">
+				<li class="mui-table-view-cell" id="exit">
 					<a style="text-align: center;color: #FF3B30;">
 						退出登录
 					</a>
@@ -69,11 +56,101 @@
 		mui.init({
 			swipeBack:true //启用右滑关闭功能
 		});
-		document.getElementById("about").addEventListener('tap',function () {
-			//获得主页面的webview
-			var main = plus.webview.currentWebview().parent();
-			//触发主页面的gohome事件
-			mui.fire(main,'gohome');
+		
+		document.getElementById('changepassword').addEventListener('tap', function() {
+			mui.openWindow({
+			    url:"../plane0/changepassword.html",
+			    id:"changepassword",
+			    styles:{
+			      top:0,//新页面顶部位置
+			      bottom:0,//新页面底部位置
+			      //width:newpage-width,//新页面宽度，默认为100%
+			      //height:newpage-height,//新页面高度，默认为100%
+			    },
+			    extras:{
+			      
+			    },
+			    createNew:false,//是否重复创建同样id的webview，默认为false:不重复创建，直接显示
+			    show:{
+			      autoShow:true,//页面loaded事件发生后自动显示，默认为true
+			      //aniShow:animationType,//页面显示动画，默认为”slide-in-right“；
+			     // duration:animationTime,//页面动画持续时间，Android平台默认100毫秒，iOS平台默认200毫秒；
+			      event:'titleUpdate',//页面显示时机，默认为titleUpdate事件时显示
+			      extras:{}//窗口动画是否使用图片加速
+			    },
+			    waiting:{
+			      autoShow:true,//自动显示等待框，默认为true
+			      title:'正在加载...',//等待对话框上显示的提示内容
+			      options:{
+			       // width:waiting-dialog-widht,//等待框背景区域宽度，默认根据内容自动计算合适宽度
+			       // height:waiting-dialog-height,//等待框背景区域高度，默认根据内容自动计算合适高度
+			      }
+			    }
+			});
+		});
+		
+		document.getElementById('exit').addEventListener('tap', function() {
+			mui.openWindow({
+			    url:"../login.html",
+			    id:"changepassword",
+			    styles:{
+			      top:0,//新页面顶部位置
+			      bottom:0,//新页面底部位置
+			      //width:newpage-width,//新页面宽度，默认为100%
+			      //height:newpage-height,//新页面高度，默认为100%
+			    },
+			    extras:{
+			      
+			    },
+			    createNew:false,//是否重复创建同样id的webview，默认为false:不重复创建，直接显示
+			    show:{
+			      autoShow:true,//页面loaded事件发生后自动显示，默认为true
+			      //aniShow:animationType,//页面显示动画，默认为”slide-in-right“；
+			     // duration:animationTime,//页面动画持续时间，Android平台默认100毫秒，iOS平台默认200毫秒；
+			      event:'titleUpdate',//页面显示时机，默认为titleUpdate事件时显示
+			      extras:{}//窗口动画是否使用图片加速
+			    },
+			    waiting:{
+			      autoShow:true,//自动显示等待框，默认为true
+			      title:'正在加载...',//等待对话框上显示的提示内容
+			      options:{
+			       // width:waiting-dialog-widht,//等待框背景区域宽度，默认根据内容自动计算合适宽度
+			       // height:waiting-dialog-height,//等待框背景区域高度，默认根据内容自动计算合适高度
+			      }
+			    }
+			});
+		});
+		
+		document.getElementById('about').addEventListener('tap', function() {
+			mui.openWindow({
+			    url:"../plane0/about.html",
+			    id:"changepassword",
+			    styles:{
+			      top:0,//新页面顶部位置
+			      bottom:0,//新页面底部位置
+			      //width:newpage-width,//新页面宽度，默认为100%
+			      //height:newpage-height,//新页面高度，默认为100%
+			    },
+			    extras:{
+			      
+			    },
+			    createNew:false,//是否重复创建同样id的webview，默认为false:不重复创建，直接显示
+			    show:{
+			      autoShow:true,//页面loaded事件发生后自动显示，默认为true
+			      //aniShow:animationType,//页面显示动画，默认为”slide-in-right“；
+			     // duration:animationTime,//页面动画持续时间，Android平台默认100毫秒，iOS平台默认200毫秒；
+			      event:'titleUpdate',//页面显示时机，默认为titleUpdate事件时显示
+			      extras:{}//窗口动画是否使用图片加速
+			    },
+			    waiting:{
+			      autoShow:true,//自动显示等待框，默认为true
+			      title:'正在加载...',//等待对话框上显示的提示内容
+			      options:{
+			       // width:waiting-dialog-widht,//等待框背景区域宽度，默认根据内容自动计算合适宽度
+			       // height:waiting-dialog-height,//等待框背景区域高度，默认根据内容自动计算合适高度
+			      }
+			    }
+			});
 		});
 	</script>
 </html>

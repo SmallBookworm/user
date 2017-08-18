@@ -1,4 +1,5 @@
 ﻿var sessionx;
+var user_id;
 function denglu(){
 	var account1 = document.getElementById('account').value;
 	alert("account1"+account1);
@@ -21,11 +22,11 @@ function denglu(){
             dataType:"json",
             async:false,
 			success:function(res){
-				//alert("res"+res.datas);
+				alert(res.userid);
 				sessionx=res.session;
-				var user_id=res.userid;
+				user_id=res.userid;
 				localStorage.setItem("session",sessionx);
-				localStorage.setItem("userid",userid);
+				localStorage.setItem("userid",user_id);
 	         	if(res.code==0) {
 	         		alert(res.msg);
 	         		document.getElementById('password').value="";

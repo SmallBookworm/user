@@ -21,8 +21,10 @@
 		<header class="mui-bar mui-bar-nav">
 			<!--<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" onclick="tologin()"></a>-->
 			<h1 id="title" class="mui-title" style="font">兆瓦</h1>
-			<span class="mui-icon mui-icon-arrowdown" style="float: right;" id="choice"></span>
-			<a style="float: right;margin-top: 10px;" >用户切换</a>
+			<div id="choice">
+			<span class="mui-icon mui-icon-arrowdown" style="float: right;"></span>
+			<div style="float: right;margin-top: 15px;">用户切换</div>
+			</div>
 			
 		</header>
 		<nav class="mui-bar mui-bar-tab" id="main">
@@ -98,17 +100,15 @@
 				activeTab = targetTab;
 			});
 			 //自定义事件，模拟点击“首页选项卡”
-			document.addEventListener('gohome', function() {
-				var defaultTab = document.getElementById("defaultTab");
-				//模拟首页点击
-				mui.trigger(defaultTab, 'tap');
-				//切换选项卡高亮
-				var current = document.querySelector(".mui-bar-tab>.mui-tab-item.mui-active");
-				if (defaultTab !== current) {
-					current.classList.remove('mui-active');
-					defaultTab.classList.add('mui-active');
-				}
-			});
+//			document.addEventListener('gohome', function() {
+//				var defaultTab = document.getElementById("defaultTab");
+//				mui.trigger(defaultTab, 'tap');
+//				var current = document.querySelector(".mui-bar-tab>.mui-tab-item.mui-active");
+//				if (defaultTab !== current) {
+//					current.classList.remove('mui-active');
+//					defaultTab.classList.add('mui-active');
+//				}
+//			});
 		
 		document.getElementById('choice').addEventListener('tap', function() {
 
@@ -142,6 +142,8 @@
 			    }
 			});
 		});
+		
+		
 		</script>
 	</body>
 
